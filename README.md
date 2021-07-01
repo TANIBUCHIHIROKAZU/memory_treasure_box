@@ -1,24 +1,62 @@
-# README
+#  memory_treasure_box
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイトの概要
+オンラインでお墓を作るアプリケーション。自分の思い出を保存でき、自分の承認した人しか閲覧することができないアプリケーションです。
 
-Things you may want to cover:
+### サイトテーマ
+このアプリケーションで最も重要にしている事は、この世の中に自分がいたという思い出や記憶を残すことです。また、家族がアルバムを見るようにこのサイトに訪れて、笑顔になるれるように作りこみをしました。
 
-* Ruby version
+### テーマを選んだ理由
+遠方で働くことになり、なかなかお墓参りができない。
+お墓だけでは思い出や伝えたい事を家族に残せない。
+墓石をしようしないことで、維持費や購入費を削減できる。
 
-* System dependencies
+### ターゲットユーザ
+20代～60代のユーザー
+60代以降の方に利用していただきたいですが、ネットを扱える方が少ないため、インターネットを利用する方をターゲット層にします。
+若い方は死についての意識はありません。明るい印象にすることで、気軽に利用できるようにトップサイトを工夫しています。
+思い出を保存することを前面に押して、幅広い年齢層の方に利用できるようにしていきます。
 
-* Configuration
 
-* Database creation
+### 主な利用シーン
+自分が残したい思い出を保存したい時に、記事を投稿する
+家族や親しい人の思い出を共有したい時に閲覧する
 
-* Database initialization
+## 設計書
+<...>
 
-* How to run the test suite
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1gmNqCRGGMx11-P1OCHG9apKsniiVCjXmr2r6ykreHPs/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
 
-* ...
+## 使用方法
+
+```
+$ git clone https://github.com/All-is-well-1/All-is-well..git
+$ cd All-is-well.
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+```
+
+## 機能
+
+-   ログイン/ログアウト機能
+-   退会機能
+-   管理機能
+-   投稿機能
+
+## 作者
+
+-   ぶっちー
