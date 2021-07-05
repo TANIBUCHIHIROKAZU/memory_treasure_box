@@ -1,0 +1,2 @@
+module Public::MemoriesHelper
+end
