@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # コーディング規約
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -60,3 +62,13 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 環境変数の管理
+gem 'dotenv-rails'
+# デバック
+gem 'pry-byebug'
+# bootstrapの導入
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
+# deviseの導入
+gem 'devise'

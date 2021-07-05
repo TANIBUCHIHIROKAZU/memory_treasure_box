@@ -1,0 +1,2 @@
+class AdminGenre < ApplicationRecord
+end
