@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
   end
 
   create_table "connections", force: :cascade do |t|
-    t.integer "followed", null: false
-    t.integer "follower", null: false
+    t.integer "followed_id", null: false
+    t.integer "follower_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true, null: false
     t.string "customer_number", default: "", null: false
-    t.string "icon", null: false
+    t.string "icon"
     t.integer "plan", default: 0, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
@@ -82,12 +82,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
     t.integer "customer_id", null: false
     t.string "memory_title", null: false
     t.text "memory_detail", null: false
-    t.boolean "is_display", default: true, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "news", force: :cascade do |t|
+    t.integer "admin_genre_id", null: false
     t.string "news_title", null: false
     t.text "news_detail", null: false
     t.datetime "created_at", null: false

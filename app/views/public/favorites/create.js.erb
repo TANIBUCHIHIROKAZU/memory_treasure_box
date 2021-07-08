@@ -1,0 +1,1 @@
+document.getElementById('favorite_<%= @memory.id %>').innerHTML = '<%= escape_javascript(render 'public/favorites/favorite', memory: @memory ) %>';
