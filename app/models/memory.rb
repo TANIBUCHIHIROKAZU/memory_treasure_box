@@ -8,5 +8,5 @@ class Memory < ApplicationRecord
 	validates :memory_detail,presence: true
 	validates :status,presence: true
 	
-	enum status: { public: 0, follower_only: 1 }
+	enum status: { public: 0, follower_only: 1 },_prefix: true
 end

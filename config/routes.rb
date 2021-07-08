@@ -26,11 +26,15 @@ Rails.application.routes.draw do
   # moduleでURLは変更せず、ファイルパスを変更する
   scope module: :public do
    root 'homes#top'
-   resources :memories do
+   resources :memories,except: [:index] do
     resource :favorites,only: [:create, :destroy]
     resources :comments,only: [:create,:destroy]
    end
-   resources :customers, only: [:index, :show, :update]
+   resources :customers, only: [:index, :show, :update] do
+    member do
+      get 'memory_index'
+    end
+   end
    resources :contacts, only: [:new, :create] do
     collection do
       get 'finish'

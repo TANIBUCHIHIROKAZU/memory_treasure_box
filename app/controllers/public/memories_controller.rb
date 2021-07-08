@@ -3,18 +3,14 @@ class Public::MemoriesController < ApplicationController
     @memory = Memory.new
   end
   
-  def index
-    @memories = current_costmer.memory.all
-  end
-  
   def show
     @memory = Memory.find(params[:id])
-    @comment
+    @comment = Comment.
   end
   
   def edit
     @memory = Memory.find(params[:id])
-    if @memory.costomer != current_costmer
+    if @memory.customer != current_customer
       redirect_to root
       # 後で変更する
     end
@@ -22,10 +18,9 @@ class Public::MemoriesController < ApplicationController
   
   def create
     @memory = Memory.new(memory_params)
-    @memory_costmer_id = current_costmer.id
+    @memory.customer_id = current_customer.id
     if @memory.save(memory_params)
-      redirect_to root
-      # 後で変更する
+      redirect_to memory_path(@memory)
     else
       render 'new'
     end
@@ -34,7 +29,7 @@ class Public::MemoriesController < ApplicationController
   def update
     @memory = Memory.find(params[:id])
    if @memory.update(memory_params)
-     redirect_to root
+     redirect_to memory_path(@memory)
    else
      render 'edit'
    end
@@ -48,7 +43,7 @@ class Public::MemoriesController < ApplicationController
   
 private
  def memory_params
-   params.require(:memory).permit(:customer_id,:memory_title,:memory_detail,:is_display)
+   params.require(:memory).permit(:customer_id,:memory_title,:memory_detail,:status)
  end
   
 end

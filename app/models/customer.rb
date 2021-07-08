@@ -11,5 +11,5 @@ class Customer < ApplicationRecord
   validates :name,presence: true
   validates :email,presence: true
   validates :name,presence: true
-  validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/,message:"は半角英数字のみで入力して下さい"}
+  validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/}
 end

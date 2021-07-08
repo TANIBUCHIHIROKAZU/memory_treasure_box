@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true, null: false
     t.string "customer_number", default: "", null: false
-    t.string "icon", null: false
+    t.string "icon"
     t.integer "plan", default: 0, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true

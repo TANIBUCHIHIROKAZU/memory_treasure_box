@@ -1,22 +1,3 @@
 <h3>投稿フォーム</h3>
-<%= from_with model:memory,local:true do |f| %>
-  <div>
-    <%= f.label :memory_title, "タイトル" %>
-    <%= f.text_field :momory_title %>
-  <div>
-  <div>
-    <%= f.label :memory_detail, "本文" %>
-    <%= f.text_area :momory_detail %>
-  <div>
-  <div>
-    <h3>表示方法</h3>
-     <%= f.radio_button :status, :public,chack: true %>
-     <%= f.label :status, :全体に公開する %>
-    </br>
-     <%= f.radio_button :status, :follower_only %>
-     <%= f.label :status, :相互フォローのみ %>
-  <div>
-  <div>
-    <%= f.submit '保存' %>
-  </div>
-<% end %>
+<%= render 'form', memory: @memory %>
+
