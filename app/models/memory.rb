@@ -9,4 +9,9 @@ class Memory < ApplicationRecord
 	validates :status,presence: true
 	
 	enum status: { public: 0, follower_only: 1 },_prefix: true
+	
+	def favorited_by?(customer)
+    favorites.where(customer_id: customer.id).exists?
+  end
+  
 end

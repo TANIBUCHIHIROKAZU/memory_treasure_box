@@ -1,8 +1,16 @@
 <h3><%= @memory.memory_title %></h3>
 <div>名前<%= @memory.customer.name %></div>
+<div id="favorite_<%= @memory.id %>">
+ <%= render "public/favorites/favorite", memory: @memory %>
+</div>
 <%= @memory.created_at.strftime('%Y/%m/%d') %>
 <% if @memory.customer.id == current_customer.id %>
-<%= link_to "編集", edit_memory_path(@memory) %>
-<%= link_to "削除", memory_path(@memory) %>
+ <%= link_to "編集", edit_memory_path(@memory) %>
+ <%= link_to "削除", memory_path(@memory) %>
+<% end %>
 <%= link_to "戻る", memories_path %>
 <div><%= @memory.memory_detail %></div>
+
+<div id="comment">
+ <%= render "public/comments/comment", memory: @memory,comment: @comment %>
+</div>
