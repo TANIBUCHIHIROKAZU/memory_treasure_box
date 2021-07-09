@@ -16,6 +16,9 @@ class Customer < ApplicationRecord
   validates :email,presence: true
   validates :name,presence: true
   validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/}
+  
+  enum plan: { "無料": 0, "プラン2": 2,"プラン3": 3}
+  enum is_active: { "入会": true, "退会": false }
 
   def follow(other_customer_id)
     unless self == other_customer_id
@@ -42,5 +45,9 @@ class Customer < ApplicationRecord
 
   def follower
     followers.where.not(id: self.followings.ids)
+  end
+  
+  def mutual_follo?(other_customer)
+    followings.include?(other_customer) & followers.include?(other_customer)
   end
 end

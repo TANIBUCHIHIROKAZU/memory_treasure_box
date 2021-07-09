@@ -12,9 +12,11 @@
 <% end %>
 
 <div>限定公開一覧</div>
-<% @memory_follower_only.each do |memory| %>
- <%= link_to memory_path(memory) do %>
-  <%= memory.memory_title %>
-  <%= memory.memory_detail %>
- <% end %>
+<% if current_customer.mutual_follo?(@customer) || @customer == current_customer %>
+  <% @memory_follower_only.each do |memory| %>
+    <%= link_to memory_path(memory) do %>
+      <%= memory.memory_title %>
+      <%= memory.memory_detail %>
+    <% end %>
+  <% end %>
 <% end %>

@@ -1,0 +1,2 @@
+module Admin::MemoriesHelper
+end

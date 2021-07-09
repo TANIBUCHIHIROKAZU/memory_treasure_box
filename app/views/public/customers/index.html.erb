@@ -1,6 +1,9 @@
 <h3>ユーザー一覧</h3>
 <% @customer.each do |customer| %>
  <div>
+  <%= link_to memory_index_customer_path(customer) do %>
+    <%= customer.name %>
+  <% end %>
  <%= customer.name %>
   <% unless customer == current_customer %>
     <% if current_customer.following?(customer) %>
