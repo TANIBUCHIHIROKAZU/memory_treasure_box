@@ -30,3 +30,38 @@
   <% end %>  
   <%= f.submit "編集する" %>
 <% end %>
+<div>相互フォロー</div>
+<% @mutual_follow.each do |customer| %>
+ <%= customer.name %>
+  <% unless customer == current_customer %>
+    <% if current_customer.following?(customer) %>
+      <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div>フォロー</div>
+<% @follow.each do |customer| %>
+ <%= customer.name %>
+  <% unless customer == current_customer %>
+    <% if current_customer.following?(customer) %>
+      <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div>フォロワー</div>
+<% @follower.each do |customer| %>
+ <%= customer.name %>
+  <% unless customer == current_customer %>
+    <% if current_customer.following?(customer) %>
+      <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -39,10 +39,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
   end
 
   create_table "connections", force: :cascade do |t|
-    t.integer "followed_id", null: false
-    t.integer "follower_id", null: false
+    t.integer "customer_id"
+    t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id", "follow_id"], name: "index_connections_on_customer_id_and_follow_id", unique: true
+    t.index ["customer_id"], name: "index_connections_on_customer_id"
+    t.index ["follow_id"], name: "index_connections_on_follow_id"
   end
 
   create_table "contacts", force: :cascade do |t|

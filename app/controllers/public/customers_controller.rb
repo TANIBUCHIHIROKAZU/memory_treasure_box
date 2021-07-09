@@ -17,7 +17,10 @@ class Public::CustomersController < ApplicationController
   @customer = Customer.find(params[:id])
   if @customer != current_customer
    redirect_to root_path
-  end 
+  end
+  @mutual_follow = current_customer.mutual_follow
+  @follow = current_customer.follow_only
+  @follower = current_customer.follower
  end
  
  def update
