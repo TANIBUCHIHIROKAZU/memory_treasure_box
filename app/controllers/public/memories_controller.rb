@@ -37,7 +37,7 @@ class Public::MemoriesController < ApplicationController
   def destroy
     @memory = Memory.find(params[:id])
     @memory.destroy
-    redirect_to root
+    redirect_to memory_index_customer_path(current_customer)
   end
 
 private

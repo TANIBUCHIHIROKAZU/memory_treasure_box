@@ -12,8 +12,9 @@
 <% end %>
 
 <div>限定公開一覧</div>
-<% @memory_follower_only.each do |m| %>
-<%= m.memory_title %>
-<%= m.memory_detail %>
-
+<% @memory_follower_only.each do |memory| %>
+ <%= link_to memory_path(memory) do %>
+  <%= memory.memory_title %>
+  <%= memory.memory_detail %>
+ <% end %>
 <% end %>

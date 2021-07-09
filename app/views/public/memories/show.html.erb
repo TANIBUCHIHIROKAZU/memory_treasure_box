@@ -6,7 +6,7 @@
 <%= @memory.created_at.strftime('%Y/%m/%d') %>
 <% if @memory.customer.id == current_customer.id %>
  <%= link_to "編集", edit_memory_path(@memory) %>
- <%= link_to "削除", memory_path(@memory) %>
+ <%= link_to "削除", memory_path(@memory), method: :delete %>
 <% end %>
 <%= link_to "戻る", memories_path %>
 <div><%= @memory.memory_detail %></div>
