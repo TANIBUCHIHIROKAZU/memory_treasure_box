@@ -1,0 +1,16 @@
+<h3>ユーザー一覧</h3>
+<% @customer.each do |customer| %>
+ <div>
+  <%= link_to memory_index_customer_path(customer) do %>
+    <%= customer.name %>
+  <% end %>
+ <%= customer.name %>
+  <% unless customer == current_customer %>
+    <% if current_customer.following?(customer) %>
+      <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+    <% end %>
+  <% end %>
+ </div>
+<% end %>

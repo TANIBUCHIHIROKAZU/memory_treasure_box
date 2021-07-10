@@ -25,9 +25,10 @@
           <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
         <% elsif admin_signed_in? %>
           <li><%= link_to 'トップ', root_path %></li>
-          <li><%= link_to '問い合わせ一覧', admin_end_users_path %></li>
-          <li><%= link_to 'ユーザー一覧',admin_orders_path %></li>
-          <li><%= link_to 'ニュース一覧',admin_genres_path %></li>
+          <li><%= link_to '問い合わせ一覧', admin_contacts_path %></li>
+          <li><%= link_to 'ユーザー一覧',admin_customers_path %></li>
+          <li><%= link_to 'ニュース一覧',admin_informations_path %></li>
+          <li><%= link_to 'ニュース投稿',new_admin_information_path %></li>
           <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'トップ', root_path %></li>

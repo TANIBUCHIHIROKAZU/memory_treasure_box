@@ -17,10 +17,15 @@ Rails.application.routes.draw do
   namespace :admin do
    resources :genres, only: [:index, :create, :edit, :update]
    resources :customers, only: [:index, :show, :edit, :update]
-   resources :news
-   resources :contacts, only: [:index, :destroy, :show]
-   resources :memories, only: [:new, :index, :show, :destroy]
-
+   resources :informations
+   resources :contacts, only: [:index, :destroy, :show] do
+    member do
+      get 'memory_index'
+    end
+   end
+   resources :memories, only: [:new, :index, :show, :destroy] do
+    resources :comments,only: [:destroy]
+   end
   end
   
   # moduleでURLは変更せず、ファイルパスを変更する
@@ -40,7 +45,7 @@ Rails.application.routes.draw do
       get 'finish'
     end
    end
-   resources :news, only: [:index, :show]
+   resources :informations, only: [:index, :show]
    resources :orders, only: [:new, :create] do
     collection do
      post 'confirmation'

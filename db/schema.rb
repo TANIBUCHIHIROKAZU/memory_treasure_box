@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_102546) do
+ActiveRecord::Schema.define(version: 2021_07_10_070524) do
 
   create_table "admin_genres", force: :cascade do |t|
     t.string "name", null: false
@@ -39,10 +39,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
   end
 
   create_table "connections", force: :cascade do |t|
-    t.integer "followed_id", null: false
-    t.integer "follower_id", null: false
+    t.integer "customer_id"
+    t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id", "follow_id"], name: "index_connections_on_customer_id_and_follow_id", unique: true
+    t.index ["customer_id"], name: "index_connections_on_customer_id"
+    t.index ["follow_id"], name: "index_connections_on_follow_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -78,6 +81,15 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "information", force: :cascade do |t|
+    t.integer "admin_genre_id", null: false
+    t.integer "admin_id", null: false
+    t.string "information_title", null: false
+    t.text "information_detail", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memories", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "memory_title", null: false
@@ -89,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_102546) do
 
   create_table "news", force: :cascade do |t|
     t.integer "admin_genre_id", null: false
+    t.integer "admin_id", null: false
     t.string "news_title", null: false
     t.text "news_detail", null: false
     t.datetime "created_at", null: false

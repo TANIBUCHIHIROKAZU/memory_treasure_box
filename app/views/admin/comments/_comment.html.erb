@@ -1,0 +1,10 @@
+<% memory.comments.each do |comment| %>
+ <%= comment.comment %>
+
+  <%= link_to "削除", admin_memory_comment_path(comment.memory_id, comment),method: :delete, remote: true %>
+
+ <br>
+  <%= link_to admin_memories_path(comment.customer) do %>
+    <%= comment.customer.name  %>
+  <% end %>
+ <% end %>

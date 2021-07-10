@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NewTest < ActiveSupport::TestCase
+class ConnectionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
