@@ -1,5 +1,5 @@
 <h3>マイページ</h3>
-<%= form_with model: @customer,lacal:true do |f| %>
+<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, lacal:true do |f| %>
     <div>
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name %>
