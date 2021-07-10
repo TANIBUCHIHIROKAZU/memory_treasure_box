@@ -8,6 +8,13 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
   
+  def memory_index
+    @customer = Customer.find(params[:id])
+    @memory = @customer.memories
+    @memory_public = @memory.where(status: :public)
+    @memory_follower_only = @memory.where(status: :follower_only)
+  end
+  
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)

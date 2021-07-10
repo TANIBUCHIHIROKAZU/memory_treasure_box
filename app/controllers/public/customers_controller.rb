@@ -5,7 +5,6 @@ class Public::CustomersController < ApplicationController
  end 
  
  def memory_index
-    
     @customer = Customer.find(params[:id])
     @memory = @customer.memories
     @memory_public = @memory.where(status: :public)
@@ -28,6 +27,9 @@ class Public::CustomersController < ApplicationController
   if @customer.update(customer_params)
    redirect_to customer_path
   else
+   @mutual_follow = current_customer.mutual_follow
+   @follow = current_customer.follow_only
+   @follower = current_customer.follower
    render 'show'
   end
  end

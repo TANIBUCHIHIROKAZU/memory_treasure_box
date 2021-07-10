@@ -1,4 +1,4 @@
-<h3>マイページ</h3>
+<h3>マイページ</h3><%= link_to "<%= @customer.name %>の投稿", admin_informations_path %>
 <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, lacal:true do |f| %>
     <div>
       <%= f.label :name, "ユーザー名" %>
@@ -12,22 +12,22 @@
       <%= f.label :customer_number, "ID" %>
       <%= f.text_field :customer_number %>
     </div>
-  <% unless @customer.plan == "無料" %>
+  <%# unless @customer.plan == "無料" %>
     <div>
       <div>支払い方法</div>
-      <%= @customer.order.payment_method %>
+      <%#= @customer.order.payment_method %>
     </div>
-  <% end %>
+  <%# end %>
     <div>
       <div>プラン</div>
-      <%= f.select :plan, Customer.plans, {selected: @customer.plan} %>
+      <%= f.select :plan, Customer.plans.keys.to_a, {} %>
     </div>
-  <% unless @customer.plan == "無料" %>
+  <%# unless @customer.plan == "無料" %>
     <div>
       <div>料金</div>
-      <%= @customer.order.price %>
+      <%#= @customer.order.price %>
     </div>
-  <% end %>
+  <%# end %>
   <div>
   <%= f.submit "編集する" %>
   </div>

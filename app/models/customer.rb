@@ -7,10 +7,12 @@ class Customer < ApplicationRecord
   has_many :memories,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :comments,dependent: :destroy
+  has_many :orders,dependent: :destroy
   has_many :connections
   has_many :followings, through: :connections, source: :follow
   has_many :reverse_of_connections, class_name: 'Connection', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_connections, source: :customer
+  
 
   validates :name,presence: true
   validates :email,presence: true

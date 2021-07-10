@@ -1,0 +1,20 @@
+<div>名前<%= @customer.name %></div>
+<div>プラン<%= @customer.plan %></div>
+<div>公開中</div>
+<% @memory_public.each do |memory| %>
+<div>
+  <%= link_to memory_path(memory) do %>
+    <%= memory.memory_title %>
+    <%= memory.memory_detail %>
+  <% end %>
+</div>
+
+<% end %>
+
+<div>限定公開一覧</div>
+  <% @memory_follower_only.each do |memory| %>
+    <%= link_to memory_path(memory) do %>
+      <%= memory.memory_title %>
+      <%= memory.memory_detail %>
+    <% end %>
+  <% end %>

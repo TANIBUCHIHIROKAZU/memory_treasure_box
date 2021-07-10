@@ -1,7 +1,7 @@
 <% memory.comments.each do |comment| %>
  <%= comment.comment %>
  <% if comment.customer.id == current_customer.id %>
-  <%= link_to "削除", memory_comment_path(comment,comment.memory_id),method: :delete, remote: true %>
+  <%= link_to "削除", memory_comment_path(comment.memory_id, comment),method: :delete, remote: true %>
  <% end %>
  <br>
   <%= link_to memory_index_customer_path(comment.customer) do %>

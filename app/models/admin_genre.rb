@@ -1,5 +1,5 @@
 class AdminGenre < ApplicationRecord
-  has_many :news
+  has_many :informations
   
-  validates :name,presence: true
+  validates :name,presence: true, uniqueness: true
 end

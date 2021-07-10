@@ -9,3 +9,22 @@ Admin.create!(
    email: 'test@test.com',
    password: 'testtest'
 )
+
+Customer.create!(
+  [
+    {
+      name: "練習太郎1",
+      email: "tanibuchi1123@gmail.com",
+      customer_number: "tanibuchi11",
+      is_active: true,
+      password: "1121desu",
+    },
+    {
+      name: "練習太郎2",
+      email: "tanibuchi1124@gmail.com",
+      customer_number: "tanibuchi12",
+      is_active: true,
+      password: "1121desu",
+    }
+  ]
+  )
