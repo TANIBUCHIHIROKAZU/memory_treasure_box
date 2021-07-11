@@ -1,0 +1,26 @@
+  <h3>確認画面</h3>
+  <div>
+    名前
+    <%= @contact.name %>
+  <div>
+  <div>
+    メールアドレス
+    <%= @contact.email %>
+  <div>
+  <div>
+    件名
+    <%= @contact.subject %>
+    </br>
+    本文
+    <%= @contact.message %>
+  <div>
+    
+  <%= form_with model: @contact, url: contacts_path,local:true do |f| %>
+  <%= f.hidden_field :name, value: @contact.name  %>
+  <%= f.hidden_field :email, value: @contact.email  %>
+  <%= f.hidden_field :subject, value: @contact.subject  %>
+  <%= f.hidden_field :message, value: @contact.message  %>
+  <div>
+    <%= f.submit '確認画面へ' %>
+  </div>
+<% end %>

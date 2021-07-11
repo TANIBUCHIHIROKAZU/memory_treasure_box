@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # deviseが複数あるため名称を変更する
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -22,12 +22,12 @@ Rails.application.routes.draw do
     end
    end
    resources :informations
-   resources :contacts, only: [:index, :destroy, :show] 
+   resources :contacts, only: [:index, :destroy, :show]
    resources :memories, only: [:show, :destroy] do
     resources :comments,only: [:destroy]
    end
   end
-  
+
   # moduleでURLは変更せず、ファイルパスを変更する
   scope module: :public do
    root 'homes#top'
@@ -41,8 +41,11 @@ Rails.application.routes.draw do
     end
    end
    resources :contacts, only: [:new, :create] do
+    member do
+     get 'finish'
+    end
     collection do
-      get 'finish'
+      post 'confirm'
     end
    end
    resources :informations, only: [:index, :show]
@@ -55,9 +58,9 @@ Rails.application.routes.draw do
    post 'unfollow/:id' => 'connections#destroy', as: 'unfollow' # フォロー外す
    get 'follower_user/:id' => 'connections#follower_user', as: 'follower_user'
    get 'followed_user/:id' => 'connections#followed_user', as: 'followed_user'
-   
+
   end
-  
-  
-  
+
+
+
 end
