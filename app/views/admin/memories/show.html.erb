@@ -1,8 +1,8 @@
 <h3><%= @memory.memory_title %></h3>
 <div>名前<%= @memory.customer.name %></div>
 <%= @memory.created_at.strftime('%Y/%m/%d') %>
-<%= link_to "削除", memory_path(@memory), method: :delete %>
-<%= link_to "戻る", memories_path %>
+<%= link_to "削除", admin_memory_path(@memory), method: :delete %>
+<%= link_to "戻る", memory_index_admin_customer_path(@customer) %>
 <div><%= @memory.memory_detail %></div>
 <div id="comment">
  <%= render "admin/comments/comment", memory: @memory,comment: @comment %>

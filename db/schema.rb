@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2021_07_10_070524) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "email", null: false
+    t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
     t.datetime "created_at", null: false
@@ -95,15 +95,6 @@ ActiveRecord::Schema.define(version: 2021_07_10_070524) do
     t.string "memory_title", null: false
     t.text "memory_detail", null: false
     t.integer "status", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "news", force: :cascade do |t|
-    t.integer "admin_genre_id", null: false
-    t.integer "admin_id", null: false
-    t.string "news_title", null: false
-    t.text "news_detail", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

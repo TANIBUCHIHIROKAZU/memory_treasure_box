@@ -8,7 +8,7 @@
  <%= link_to "編集", edit_memory_path(@memory) %>
  <%= link_to "削除", memory_path(@memory), method: :delete %>
 <% end %>
-<%= link_to "戻る", memories_path %>
+<%= link_to "戻る", memory_index_customer_path %>
 <div><%= @memory.memory_detail %></div>
 
 <div id="comment">

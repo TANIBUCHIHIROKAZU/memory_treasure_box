@@ -12,7 +12,7 @@
       <div>ID</div>
       <%= @customer.customer_number %>
     </div>
-  <% unless @customer.plan.zero? %>
+  <% unless @customer.plan == "無料" %>
     <div>
       <div>支払い方法</div>
       <%= @customer.order.payment_method %>
@@ -22,7 +22,7 @@
       <div>プラン</div>
       <%= @customer.plan %>
     </div>
-  <% unless @customer.plan.zero? %>
+  <% unless @customer.plan == "無料" %>
     <div>
       <div>料金</div>
       <%= @customer.order.price %>

@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
 
   validates :name,presence: true
   validates :email,presence: true
-  validates :name,presence: true
+  validates :encrypted_password,presence: true
   validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/}
   
   enum plan: { "無料": 0, "プラン2": 1,"プラン3": 2}
