@@ -1,4 +1,7 @@
-<h3>マイページ</h3><%= link_to "<%= @customer.name %>の投稿", admin_informations_path %>
+<%= link_to "戻る", admin_customer_path(@customer) %>
+<h3>マイページ</h3><%= link_to  memory_index_admin_customer_path(@customer) do  %>
+<%= @customer.name %>の投稿一覧
+<% end %>
 <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, lacal:true do |f| %>
     <div>
       <%= f.label :name, "ユーザー名" %>

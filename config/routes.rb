@@ -16,14 +16,14 @@ Rails.application.routes.draw do
   # namespaceでURLパスとファイルパスを変更する
   namespace :admin do
    resources :genres, only: [:index, :create, :edit, :update]
-   resources :customers, only: [:index, :show, :edit, :update]
-   resources :informations
-   resources :contacts, only: [:index, :destroy, :show] do
-    member do
+   resources :customers, only: [:index, :show, :edit, :update] do
+       member do
       get 'memory_index'
     end
    end
-   resources :memories, only: [:new, :index, :show, :destroy] do
+   resources :informations
+   resources :contacts, only: [:index, :destroy, :show] 
+   resources :memories, only: [:show, :destroy] do
     resources :comments,only: [:destroy]
    end
   end
