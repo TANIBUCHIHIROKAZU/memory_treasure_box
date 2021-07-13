@@ -1,0 +1,7 @@
+<% information.each do |information| %>
+  <%= link_to information_path(information) do %>
+   <%= information.created_at.strftime('%Y/%m/%d') %>
+   <%= information.admin_genre.name %>
+   <%= information.information_title %>
+  <% end %>
+<% end %>

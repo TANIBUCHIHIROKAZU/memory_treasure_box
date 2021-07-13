@@ -1,6 +1,6 @@
 class Public::InformationsController < ApplicationController
   def index
-    @informations = Information.all
+    @information = Information.all
   end
 
   def show

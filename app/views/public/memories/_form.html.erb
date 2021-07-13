@@ -2,11 +2,19 @@
   <div>
     <%= f.label :memory_title, "タイトル" %>
     <%= f.text_field :memory_title %>
-  <div>
+  </div>
   <div>
     <%= f.label :memory_detail, "本文" %>
     <%= f.text_area :memory_detail %>
+  </div>
   <div>
+    画像
+    <%= f.attachment_field :memory_images_images, multiple: true %>
+  </div>
+  <div>
+    タグ
+    <%= f.text_field :tag_name %>
+  </div> 
   <div>
     <h3>表示方法</h3>
      <%= f.radio_button :status, :public,chack: true %>
@@ -14,7 +22,7 @@
     </br>
      <%= f.radio_button :status, :follower_only %>
      <%= f.label :status, :相互フォローのみ %>
-  <div>
+  </div>
   <div>
     <%= f.submit '保存' %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_070524) do
+ActiveRecord::Schema.define(version: 2021_07_13_065925) do
 
   create_table "admin_genres", force: :cascade do |t|
     t.string "name", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_07_10_070524) do
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true, null: false
     t.string "customer_number", default: "", null: false
-    t.string "icon"
+    t.string "icon_id"
     t.integer "plan", default: 0, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
@@ -99,6 +99,22 @@ ActiveRecord::Schema.define(version: 2021_07_10_070524) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memory_images", force: :cascade do |t|
+    t.integer "memory_id", null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memory_id"], name: "index_memory_images_on_memory_id"
+  end
+
+  create_table "memory_tags", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_memory_tags_on_customer_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "payment_method", default: 0, null: false
@@ -106,6 +122,15 @@ ActiveRecord::Schema.define(version: 2021_07_10_070524) do
     t.integer "plan", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tagmaps", force: :cascade do |t|
+    t.integer "memory_id"
+    t.integer "memory_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memory_id"], name: "index_tagmaps_on_memory_id"
+    t.index ["memory_tag_id"], name: "index_tagmaps_on_memory_tag_id"
   end
 
 end

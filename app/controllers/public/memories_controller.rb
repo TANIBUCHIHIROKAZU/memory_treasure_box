@@ -1,10 +1,12 @@
 class Public::MemoriesController < ApplicationController
   def new
     @memory = Memory.new
+    # @memory = memory_images.build
   end
 
   def show
     @memory = Memory.find(params[:id])
+    @memory_tags = @memory.memory_tags
     @comment = Comment.new
   end
 
@@ -17,8 +19,11 @@ class Public::MemoriesController < ApplicationController
 
   def create
     @memory = Memory.new(memory_params)
-    @memory.customer_id = current_customer.id
-    if @memory.save(memory_params)
+    @memory.customer = current_customer
+    tag_list = params[:memory][:tag_name].split(nil)
+    if @memory.save
+       @memory.save_memory_tag(tag_list,current_customer)
+
       redirect_to memory_path(@memory)
     else
       render 'new'
@@ -42,7 +47,6 @@ class Public::MemoriesController < ApplicationController
 
 private
  def memory_params
-   params.require(:memory).permit(:customer_id,:memory_title,:memory_detail,:status)
+   params.require(:memory).permit(:memory_title,:memory_detail,:status, memory_images_images: [])
  end
-
 end
