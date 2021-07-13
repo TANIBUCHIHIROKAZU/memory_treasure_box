@@ -27,11 +27,16 @@
       <div>料金</div>
       <%= @customer.order.price %>
     </div>
-  <% end %>  
+  <% end %>
+  <h4>画像</h4>
+  <%= f.attachment_field :icon %>
+   <%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+  
   <%= f.submit "編集する" %>
 <% end %>
 <div>相互フォロー</div>
 <% @mutual_follow.each do |customer| %>
+ <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
  <%= customer.name %>
   <% unless customer == current_customer %>
     <% if current_customer.following?(customer) %>
@@ -44,6 +49,7 @@
 
 <div>フォロー</div>
 <% @follow.each do |customer| %>
+ <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
  <%= customer.name %>
   <% unless customer == current_customer %>
     <% if current_customer.following?(customer) %>
@@ -56,6 +62,7 @@
 
 <div>フォロワー</div>
 <% @follower.each do |customer| %>
+ <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
  <%= customer.name %>
   <% unless customer == current_customer %>
     <% if current_customer.following?(customer) %>

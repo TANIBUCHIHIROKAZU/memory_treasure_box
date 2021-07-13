@@ -5,6 +5,7 @@
 
  <br>
   <%= link_to admin_memories_path(comment.customer) do %>
+    <%= attachment_image_tag comment.customer.icon, :icon, :fill, 60, 60, fallback: "no_image.jpg" %> 
     <%= comment.customer.name  %>
   <% end %>
  <% end %>

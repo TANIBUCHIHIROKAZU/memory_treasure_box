@@ -72,5 +72,7 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 # deviseの導入
 gem 'devise'
-# 権限管理
-gem 'cancancan'
+
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+

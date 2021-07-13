@@ -1,8 +1,9 @@
-<%= link_to "戻る", admin_customer_path(@customer) %>
+<%= link_to "戻る", admin_customers_path(@customer) %>
 <h3>マイページ</h3><%= link_to  memory_index_admin_customer_path(@customer) do  %>
 <%= @customer.name %>の投稿一覧
 <% end %>
 <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, lacal:true do |f| %>
+    <%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
     <div>
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name %>
@@ -31,6 +32,8 @@
       <%#= @customer.order.price %>
     </div>
   <%# end %>
+  <div>会員ステータス</div>
+    <%= f.select :is_active, Customer.is_actives.keys.to_a, {} %>
   <div>
   <%= f.submit "編集する" %>
   </div>

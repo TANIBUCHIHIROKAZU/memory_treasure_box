@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
    resources :genres, only: [:index, :create, :edit, :update]
    resources :customers, only: [:index, :show, :edit, :update] do
-       member do
+      member do
       get 'memory_index'
     end
    end
@@ -49,8 +49,9 @@ Rails.application.routes.draw do
     end
    end
    resources :informations, only: [:index, :show]
-   resources :orders, only: [:new, :create] do
+   resources :orders, only: [:create] do
     collection do
+     get 'plan2'
      post 'confirmation'
     end
    end
@@ -58,7 +59,7 @@ Rails.application.routes.draw do
    post 'unfollow/:id' => 'connections#destroy', as: 'unfollow' # フォロー外す
    get 'follower_user/:id' => 'connections#follower_user', as: 'follower_user'
    get 'followed_user/:id' => 'connections#followed_user', as: 'followed_user'
-
+   get 'orders/plan1/:id' => 'orders#plan1', as: 'plan1_order'
   end
 
 

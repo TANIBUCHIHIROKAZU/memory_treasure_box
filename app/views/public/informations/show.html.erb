@@ -1,0 +1,5 @@
+<h3><%= @information.information_title %></h3>
+<div><%= @information.admin_genre.name %></div>
+<%= @information.created_at.strftime('%Y/%m/%d') %>
+<%= link_to "戻る", informations_path %>
+<div><%= @information.information_detail %></div>
