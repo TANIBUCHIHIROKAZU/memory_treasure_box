@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
     @customer = current_customer
     @plan_id = params[:id]
+    
     # @plan_id = Order.plans.invert[params[:id].to_i]
     # @plan_id = Order.plans.invert[plan_id.to_i]
     else
@@ -21,7 +22,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new
     @order.plan = order_params["plan"].to_i
-    @order.price = order_params["price"]
+    @order.price = order_params["price"].to_i
     @order.payment_method = order_params["payment_method"].to_i
     @order.customer = current_customer
     if @order.save(order_params)
