@@ -1,5 +1,4 @@
 
 
-料金 <%= Order.prices[plan_id] %>
-
-<%= link_to "試してみる", plan1_order_path(plan_id) %>
+料金 <%= Order.prices.invert[price_id] %>
+<%= link_to "試してみる", plan1_order_path(plan_id,price_id) %>

@@ -9,7 +9,7 @@
 　<%= f.label :クレジット %>
 プラン<%= Order.plans.invert[@plan_id.to_i] %>
 <%= f.hidden_field :plan, value: @plan_id %>
-料金 <%= Order.prices[@plan_id] %>
+料金 <%= Order.prices.invert[@plan_id.to_i] %>
 <%= f.hidden_field :price, value: @plan_id %>
 <%= f.submit '確認画面へ' %>
 <% end %>

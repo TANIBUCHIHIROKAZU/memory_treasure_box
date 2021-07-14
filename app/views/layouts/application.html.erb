@@ -11,32 +11,33 @@
 
   <body>
     <header>
-      <div>
-        EndingCompany
-      </div>
-
-      <ul>
-        <% if customer_signed_in? %>
-          <li><%= link_to 'トップ', root_path %></li>
-          <li><%= link_to 'マイページ', customer_path(current_customer) %></li>
-          <li><%= link_to '私の思い出', memory_index_customer_path(current_customer) %></li>
-          <li><%= link_to 'ユーザー一覧', customers_path %></li>
-          <li><%= link_to '思い出の保存', new_memory_path %></li>
-          <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
-        <% elsif admin_signed_in? %>
-          <li><%= link_to 'トップ', root_path %></li>
-          <li><%= link_to '問い合わせ一覧', admin_contacts_path %></li>
-          <li><%= link_to 'ユーザー一覧',admin_customers_path %></li>
-          <li><%= link_to 'ニュース一覧',admin_informations_path %></li>
-          <li><%= link_to 'ニュース投稿',new_admin_information_path %></li>
-          <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to 'トップ', root_path %></li>
-          <li><%= link_to '問い合わせ', new_contact_path %></li>
-          <li><%= link_to 'ログイン', new_customer_session_path %></li>
-          <li><%= link_to 'サインアップ', new_customer_registration_path %></li>
-        <% end %>
-      </ul>
+        <h1>
+            EndingCompany
+        </h1>
+        <nav class="global_navi" >
+          <ul>
+            <% if customer_signed_in? %>
+              <li><%= link_to 'トップ', root_path %></li>
+              <li><%= link_to 'マイページ', customer_path(current_customer) %></li>
+              <li><%= link_to '私の思い出', memory_index_customer_path(current_customer) %></li>
+              <li><%= link_to 'ユーザー一覧', customers_path %></li>
+              <li><%= link_to '思い出の保存', new_memory_path %></li>
+              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+            <% elsif admin_signed_in? %>
+              <li><%= link_to 'トップ', root_path %></li>
+              <li><%= link_to '問い合わせ一覧', admin_contacts_path %></li>
+              <li><%= link_to 'ユーザー一覧',admin_customers_path %></li>
+              <li><%= link_to 'ニュース一覧',admin_informations_path %></li>
+              <li><%= link_to 'ニュース投稿',new_admin_information_path %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'トップ', root_path %></li>
+              <li><%= link_to '問い合わせ', new_contact_path %></li>
+              <li><%= link_to 'ログイン', new_customer_session_path %></li>
+              <li><%= link_to 'サインアップ', new_customer_registration_path %></li>
+            <% end %>
+          </ul>
+        </nav>  
     </header>
     <%= yield %>
   </body>

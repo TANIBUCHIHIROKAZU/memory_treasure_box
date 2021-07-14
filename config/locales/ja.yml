@@ -27,13 +27,35 @@ ja:
           attributes:
             email:
               blank: "が入力されていません"
+              taken: "は既に使用されています"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
             name:
               blank: "が入力されていません"
             password:
+              taken: "は既に使用されています。"
               blank: "が入力されていません"
+              confirmation: "が内容とあっていません。"
+              taken: "は既に使用されています。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
             customer_number:
               blank: "が入力されていません"
               invalid: "が半角英数字で入力されていません"
+              taken: "は既に使用されています"
+              too_short: "は%{count}文字以上に設定して下さい。"
+            encrypted_password: 
+              taken: "は既に使用されています。"
+              blank: "が入力されていません"
+              confirmation: "が内容とあっていません。"
+              taken: "は既に使用されています。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            password_confirmation:
+              confirmation: "が内容とあっていません。"
     models:
       customer: "ユーザー"
     attributes:
@@ -42,11 +64,9 @@ ja:
         email: "メールアドレス"
         customer_number: "ID"
         icon: "プロフィール画像"
+        encrypted_password: "パスワード"
         password: "パスワード"
-  activerecord:
-    errors:
-      messages:
-        record_invalid: "バリデーションに失敗しました: %{errors}"
+        password_confirmation: "確認用パスワード"
 
 
 

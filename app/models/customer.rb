@@ -19,9 +19,8 @@ class Customer < ApplicationRecord
   validates :name,presence: true
   validates :email,presence: true
   validates :encrypted_password,presence: true
-  validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/}
-
-  enum plan: { "無料": 0, "プラン2": 1,"プラン3": 2}
+  validates :customer_number, uniqueness: true, presence: true,format: {with: /\A[a-zA-Z0-9]+\z/} 
+  enum plan: { "free_plan": 0, "plan_1": 1,"plan_2": 2}
   enum is_active: { "入会済み": true, "退会": false }
 
   def follow(other_customer_id)
