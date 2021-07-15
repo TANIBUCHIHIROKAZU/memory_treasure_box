@@ -25,7 +25,8 @@ class Public::OrdersController < ApplicationController
     @order.price = order_params["price"].to_i
     @order.payment_method = order_params["payment_method"].to_i
     @order.customer = current_customer
-    if @order.save(order_params)
+    if @order.save
+      current_customer.update_attributes(plan: @order.plan )
       redirect_to customer_path(current_customer.id)
       # 後で変更する
     else

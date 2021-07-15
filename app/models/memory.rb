@@ -11,8 +11,17 @@ class Memory < ApplicationRecord
 	validates :memory_title,presence: true
 	validates :memory_detail,presence: true
 	validates :status,presence: true
-	validate :validate_memory_images, if: Customer.order.free_plan?
+	validate :validate_memory_images, if: :free_plan?
 
+
+def free_plan?
+
+	 if Customer.find(customer_id).orders.count > 0
+	   Customer.find(customer_id).orders.last.plan == "free_plan"
+	 else
+	   true
+	 end
+end
 
   # before_save :aaa
 
@@ -23,8 +32,8 @@ class Memory < ApplicationRecord
   # end
 
   def validate_memory_images
-    if memory_imges.size > 0
-      errors.add(:base, 'message')
+    if memory_images.size > 0
+      errors.add(:base, 'ああああ')
     end
   end
 

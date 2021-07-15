@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     end
     collection do
       post 'confirm'
+      get 'confirm'
     end
    end
    resources :informations, only: [:index, :show]

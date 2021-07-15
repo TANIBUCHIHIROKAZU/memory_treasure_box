@@ -4,9 +4,9 @@
 メールアドレス:<%= @customer.email %>
 <h3>支払い方法</h3>
 <%= f.radio_button :payment_method, 1, checked: true %>
-　<%= f.label :銀行 %>
+  <%= f.label :銀行 %>
 <%= f.radio_button :payment_method, 2 %>
-　<%= f.label :クレジット %>
+  <%= f.label :クレジット %>
 プラン<%= Order.plans.invert[@plan_id.to_i] %>
 <%= f.hidden_field :plan, value: @plan_id %>
 料金 <%= Order.prices.invert[@plan_id.to_i] %>

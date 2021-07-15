@@ -5,10 +5,17 @@ class Public::ContactsController < ApplicationController
  end
 
  def confirm
-  @contact = Contact.new(contact_params)
-  if @contact.invalid?
-   render :new
+  if params[:contact].blank?
+   redirect_to new_contact_path
+   return
   end
+  
+  @contact = Contact.new(contact_params)
+  
+  if @contact.invalid?
+   redirect_to new_contact_path
+  end
+  
  end
 
  def finish
