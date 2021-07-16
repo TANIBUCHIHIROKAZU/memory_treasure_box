@@ -1,4 +1,8 @@
 ja:
+  devise:
+    sessions:
+      customer:
+        signed_in: ""
   errors:
     messages:
       not_saved:
