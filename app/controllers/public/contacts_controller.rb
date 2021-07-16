@@ -1,9 +1,13 @@
 class Public::ContactsController < ApplicationController
 
+#問い合わせフォーム
  def new
   @contact = Contact.new
  end
 
+#確認画面
+# 送信完了後画面を表示させない処理
+# validateエラーの場合newに戻る
  def confirm
   if params[:contact].blank?
    redirect_to new_contact_path
@@ -13,15 +17,17 @@ class Public::ContactsController < ApplicationController
   @contact = Contact.new(contact_params)
   
   if @contact.invalid?
-   redirect_to new_contact_path
+   render :new
   end
   
  end
 
+# 送信完了画面
  def finish
   @contact = Contact.find(params[:id])
  end
 
+# 問い合わせ送信後、管理者にメールを送る
  def create
   @contact = Contact.new(contact_params)
   if @contact.save
