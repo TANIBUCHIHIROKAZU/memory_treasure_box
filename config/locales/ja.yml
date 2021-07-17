@@ -1,4 +1,14 @@
 ja:
+  enums:
+    customer:
+      plan:
+        free_plan: "ライトプラン"
+        plan_1: "スタンダードプラン"
+        plan_2: "デラックスプラン"
+      is_active:
+        active: "入会済み"
+        unsubscribe: "退会済み"
+        
   devise:
     sessions:
       customer:
@@ -29,6 +39,7 @@ ja:
       models:
         customer:
         contact:
+        memory:
           attributes:
             email:
               blank: "が入力されていません"
@@ -65,6 +76,10 @@ ja:
               blank: "が入力されていません"
             message:
               blank: "が入力されていません"
+            memory_title:
+              blank: "が入力されていません"
+            memory_detail:
+              blank: "が入力されていません"
 
     models:
       customer: "ユーザー"
@@ -82,6 +97,9 @@ ja:
         email: "メールアドレス"
         subject: "件名"
         message: "お問い合わせ内容詳細"
+      memory:
+        memory_title: "タイトル"
+        memory_detail: "本文"
 
   # 全てのmodelで共通して使用するattributesを定義
   attributes:

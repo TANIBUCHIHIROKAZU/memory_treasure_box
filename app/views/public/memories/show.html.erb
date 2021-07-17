@@ -1,17 +1,22 @@
-<h3><%= @memory.memory_title %></h3>
-<div>名前<%= @memory.customer.name %></div>
-<div id="favorite_<%= @memory.id %>">
- <%= render "public/favorites/favorite", memory: @memory %>
+  <% if flash[:danger] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
+<h1><%= @memory.memory_title %></h1>
+<div>
+    <div>名前 <%= @memory.customer.name %></div>
+    <div id="favorite_<%= @memory.id %>">
+      <%= render "public/favorites/favorite", memory: @memory %>
+    </div>
+  <% @memory_tags.each do |tag| %>
+    <div><%= tag.tag_name %></div>
+  <% end %>
+    <div><%= @memory.created_at.strftime('%Y/%m/%d') %></div>
+   <% if @memory.customer.id == current_customer.id %>
+     <div><%= link_to "編集", edit_memory_path(@memory) %></div>
+     <div><%= link_to "削除", memory_path(@memory), method: :delete %></div>
+   <% end %>
+     <div><%= link_to "戻る", memory_index_customer_path(@memory.customer_id) %></div>
 </div>
-<% @memory_tags.each do |tag| %>
-<%= tag.tag_name %>
-<% end %>
-<%= @memory.created_at.strftime('%Y/%m/%d') %>
-<% if @memory.customer.id == current_customer.id %>
- <%= link_to "編集", edit_memory_path(@memory) %>
- <%= link_to "削除", memory_path(@memory), method: :delete %>
-<% end %>
-<%= link_to "戻る", memory_index_customer_path %>
 <div><%= @memory.memory_detail %></div>
 <% if @memory.memory_images.present? %>
   <% @memory.memory_images.each do |image| %>

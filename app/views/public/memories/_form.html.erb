@@ -1,29 +1,35 @@
+
 <%= form_with model: memory,local:true do |f| %>
   <div>
-    <%= f.label :memory_title, "タイトル" %>
-    <%= f.text_field :memory_title %>
+    <div><%= f.label :memory_title, "タイトル" %></div>
+    <div><%= f.text_field :memory_title %></div>
   </div>
   <div>
-    <%= f.label :memory_detail, "本文" %>
-    <%= f.text_area :memory_detail %>
+    <div><%= f.label :memory_detail, "本文" %></div>
+    <div><%= f.text_area :memory_detail %></div>
   </div>
-  <%# if current_customer.plan == 1 %>
+  <% if current_customer.plan == "plan_1" %>
   <div>
-    画像
-    <%= f.attachment_field :memory_images_images, multiple: true %>
+    <div>画像</div>
+    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
+  </div>
+  <% elsif current_customer.plan == "plan_2" %>
+  <div>
+    <div>画像</div>
+    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
   </div>
   <div>
-    タグ
-    <%= f.text_field :tag_name %>
+    <div>タグ</div>
+    <div><%= f.text_field :tag_name %></div>
   </div>
-  <%# end %>
+  <% end %>
   <div>
     <h3>表示方法</h3>
-     <%= f.radio_button :status, :public,chack: true %>
-     <%= f.label :status, :全体に公開する %>
+    <div><%= f.radio_button :status, :public,chack: true %></div>
+    <div><%= f.label :status, :全体に公開する %></div>
     </br>
-     <%= f.radio_button :status, :follower_only %>
-     <%= f.label :status, :相互フォローのみ %>
+    <div><%= f.radio_button :status, :follower_only %><div>
+    <div><%= f.label :status, :相互フォローのみ %><div>
   </div>
   <div>
     <%= f.submit '保存' %>

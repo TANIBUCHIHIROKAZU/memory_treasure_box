@@ -1,12 +1,7 @@
 class Public::OrdersController < ApplicationController
+  
   # 申し込み画面に遷移
   def plan_order
-    if current_customer.plan_before_type_cast.to_s == params[:id] || (current_customer.plan_before_type_cast.to_s && (params[:id] == 1.to_s))
-      redirect_to root_path
-      flash[:notice] = "このアカウントのプランで購入できません"
-      return
-    end
-    
     if customer_signed_in?
       @order = Order.new
       @customer = current_customer
@@ -14,7 +9,15 @@ class Public::OrdersController < ApplicationController
     else
       redirect_to root_path
       flash[:notice] = "購入するにはアカウントが必要です"
+      return
     end
+    
+    if current_customer.plan_before_type_cast.to_s == params[:id] || test
+      redirect_to root_path
+      flash[:notice] = "このアカウントのプランで購入できません"
+      return
+    end
+
   end
   # 最終確認画面
   # 購入完了後、確認画面に戻る場合トップに戻る
@@ -38,12 +41,26 @@ class Public::OrdersController < ApplicationController
       current_customer.update_attributes(plan: @order.plan )
       redirect_to customer_path(current_customer.id)
     else
-      render 'new'
+      flash[:danger] = "購入に失敗しました"
+      render root_path
     end
   end
 
 private
   def order_params
     params.require(:order).permit(:payment_method,:price,:plan)
+  end
+  
+  def test
+    # freeの人
+    if current_customer.plan_before_type_cast.to_s == '0'
+      return false
+    # 1の人
+    elsif current_customer.plan_before_type_cast.to_s == '1'
+      return false
+    # 2の人
+    elsif current_customer.plan_before_type_cast.to_s == '2'
+      return params[:id].to_s == '1' ? true : false
+    end
   end
 end

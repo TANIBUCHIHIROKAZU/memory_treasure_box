@@ -1,4 +1,7 @@
 <%= link_to "戻る", admin_customers_path(@customer) %>
+  <% if flash[:success] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
 <h3>マイページ</h3><%= link_to  memory_index_admin_customer_path(@customer) do  %>
 <%= @customer.name %>の投稿一覧
 <% end %>

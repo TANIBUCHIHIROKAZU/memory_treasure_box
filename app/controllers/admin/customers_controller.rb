@@ -19,6 +19,7 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to admin_customer_path(@customer)
+      flash[:success] = "保存されました"
     else
       render :show
     end

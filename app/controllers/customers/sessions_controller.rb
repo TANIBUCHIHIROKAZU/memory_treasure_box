@@ -14,9 +14,10 @@ class Customers::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+    flash[:notice] = nil
+  end
  before_action :reject_user, only: [:create]
   protected
 
@@ -24,7 +25,7 @@ class Customers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
 
   def reject_user
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
@@ -37,12 +38,12 @@ class Customers::SessionsController < Devise::SessionsController
       flash[:error] = "必須項目を入力してください。"
     end
   end
-  
-  
+
+
   def after_sign_up_path_for(resource)
    customer_path
   end
-  
+
   def after_sign_out_path_for(resource)
     root_path
   end

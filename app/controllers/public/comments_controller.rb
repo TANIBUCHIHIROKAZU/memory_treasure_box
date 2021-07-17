@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+ 
+ # コメント作成
  def create
   @memory = Memory.find(params[:memory_id])
   comment = current_customer.comments.new(comment_params)
@@ -6,7 +8,7 @@ class Public::CommentsController < ApplicationController
   comment.save
   @comment = Comment.new
  end
-
+# コメント
  def destroy
   @memory = Memory.find(params[:memory_id])
   comment = current_customer.comments.find_by(params[:id])
