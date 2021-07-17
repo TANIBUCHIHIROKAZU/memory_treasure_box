@@ -1,7 +1,6 @@
 class Public::MemoriesController < ApplicationController
   def new
     @memory = Memory.new
-    # @memory = memory_images.build
   end
 
   def show
@@ -13,17 +12,24 @@ class Public::MemoriesController < ApplicationController
   def edit
     @memory = Memory.find(params[:id])
     if @memory.customer != current_customer
-      redirect_to root
+      redirect_to root_path
     end
   end
 
   def create
+    if params[:memory].blank?
+      redirect_to new_memory_path
+      return
+    end
     @memory = Memory.new(memory_params)
     @memory.customer = current_customer
-    tag_list = params[:memory][:tag_name].split(nil)
+    tag_list = params[:memory][:tag_name]&.split(nil)
     if @memory.save
-       @memory.save_memory_tag(tag_list,current_customer)
-
+      if current_customer.plan == "plan_2"
+        @memory.save_memory_tag(tag_list,current_customer)
+      else
+        flash[:danger] = "あなたのプランではタグ機能は使用できません"
+      end
       redirect_to memory_path(@memory)
     else
       render 'new'
@@ -32,7 +38,9 @@ class Public::MemoriesController < ApplicationController
 
   def update
     @memory = Memory.find(params[:id])
+    tag_list = params[:memory][:tag_name]&.split(nil)
    if @memory.update(memory_params)
+     @memory.save_memory_tag(tag_list,current_customer)
      redirect_to memory_path(@memory)
    else
      render 'edit'

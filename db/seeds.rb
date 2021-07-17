@@ -25,6 +25,22 @@ Customer.create!(
       customer_number: "tanibuchi12",
       is_active: true,
       password: "1121desu",
+    },
+    {
+      name: "練習太郎3",
+      email: "tanibuchi1125@gmail.com",
+      customer_number: "tanibuchi13",
+      is_active: true,
+      password: "1121desu",
+    },
+    {
+      name: "練習太郎4",
+      email: "tanibuchi1126@gmail.com",
+      customer_number: "tanibuchi14",
+      is_active: true,
+      password: "1121desu",
     }
+  
+  
   ]
   )

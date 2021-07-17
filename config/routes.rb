@@ -59,5 +59,6 @@ Rails.application.routes.draw do
    post 'follow/:id' => 'connections#create', as: 'follow' # フォローする
    post 'unfollow/:id' => 'connections#destroy', as: 'unfollow' # フォロー外す
    get 'orders/plan_order/:id' => 'orders#plan_order', as: 'plan_order'
+   get 'memories' => 'memories#create', as: 'memory_create'
   end
 end
