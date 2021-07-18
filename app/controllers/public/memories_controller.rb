@@ -4,9 +4,15 @@ class Public::MemoriesController < ApplicationController
   end
 
   def show
-    @memory = Memory.find(params[:id])
-    @memory_tags = @memory.memory_tags
-    @comment = Comment.new
+    begin
+      @memory = Memory.find(params[:id])
+      @memory_tags = @memory.memory_tags
+      @comment = Comment.new
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to memory_index_customer_path(current_customer)
+      return
+    end
+
   end
 
   def edit

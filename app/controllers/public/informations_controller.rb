@@ -7,5 +7,4 @@ class Public::InformationsController < ApplicationController
     @information = Information.find(params[:id])
   end
 
-
 end

@@ -4,6 +4,7 @@
   <%= link_to admin_contact_path(contact) do %>
     <%= contact.created_at.strftime('%Y/%m/%d') %>
     <%= contact.name %>
-    <%= contact.subject %>
+    <%= truncate(contact.subject,length: 20)  %>
   <% end %>
-<% end %>  
+<% end %> 
+<%= paginate @contact %>

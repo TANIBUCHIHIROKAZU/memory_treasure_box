@@ -10,8 +10,8 @@ class Public::CustomersController < ApplicationController
   def memory_index
      @customer = Customer.find(params[:id])
      @memory = @customer.memories
-     @memory_public = @memory.where(status: :public)
-     @memory_follower_only = @memory.where(status: :follower_only)
+     @memory_public = @memory.where(status: :public).page(params[:page]).per(10)
+     @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(10)
   end
 
   # ログイン会員のマイページ
@@ -20,9 +20,9 @@ class Public::CustomersController < ApplicationController
    if @customer != current_customer
     redirect_to root_path
    end
-   @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(1)
-   @follow = current_customer.follow_only.page(params[:page]).per(2)
-   @follower = current_customer.follower.page(params[:page]).per(2)
+   @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(10)
+   @follow = current_customer.follow_only.page(params[:page]).per(10)
+   @follower = current_customer.follower.page(params[:page]).per(10)
   end
 
 

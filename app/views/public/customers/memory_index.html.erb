@@ -6,15 +6,18 @@
     <li>
       <%= link_to memory_path(memory) do %>
         <%= memory.memory_title %>
-        <%= truncate(memory.memory_detail,length: 20,omission: "続きへ") %>
+        <% memory.memory_tags.each do |tag| %>
+          <%= tag.tag_name %>
+        <% end %>
+        <%= truncate(memory.memory_detail,length: 20) %>
         ♡<%= memory.favorites.count %>
         コメント(<%= memory.comments.count %>)
-
       <% end %>
     </li>
   </ul>
-
 <% end %>
+<%= paginate @memory_public %>
+
 
 <div>限定公開一覧</div>
 <% if current_customer.mutual_follow?(@customer) || @customer == current_customer %>
@@ -23,12 +26,15 @@
       <li>
         <%= link_to memory_path(memory) do %>
           <%= memory.memory_title %>
-          <%= memory.memory_detail.truncate(8) %>
+          <% memory.memory_tags.each do |tag| %>
+            <%= tag.tag_name %>
+          <% end %>
+          <%= truncate(memory.memory_detail, length: 10) %>
           ♡<%= memory.favorites.count %>
           コメント(<%= memory.comments.count %>)
-
         <% end %>
       </li>
     </ul>
   <% end %>
 <% end %>
+<%= paginate @memory_follower_only %>
