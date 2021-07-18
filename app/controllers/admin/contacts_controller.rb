@@ -1,10 +1,14 @@
 class Admin::ContactsController < ApplicationController
   def index
-    @contact = Contact.all
+    @contact = Contact.page(params[:page]).per(10)
   end
   
   def show
-    @contact = Contact.find(params[:id])
+    begin
+      @contact = Contact.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to admin_contacts_path
+    end
   end
   
   def destroy

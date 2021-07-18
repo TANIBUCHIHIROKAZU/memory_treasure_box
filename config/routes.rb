@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # namespaceでURLパスとファイルパスを変更する
   namespace :admin do
-   resources :genres, only: [:index, :create, :update]
+   resources :genres, only: [:index, :create, :destroy]
    resources :customers, only: [:index, :show, :update] do
       member do
       get 'memory_index'
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
    end
    post 'follow/:id' => 'connections#create', as: 'follow' # フォローする
    post 'unfollow/:id' => 'connections#destroy', as: 'unfollow' # フォロー外す
-   get 'orders/plan_order/:id' => 'orders#plan_order', as: 'plan_order'
+   get 'orders/plan_order/:price_id/:plan_id' => 'orders#plan_order', as: 'plan_order'
    get 'memories' => 'memories#create', as: 'memory_create'
   end
 end

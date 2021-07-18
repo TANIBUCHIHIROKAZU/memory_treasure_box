@@ -1,8 +1,10 @@
+<h1>編集フォーム</h1>
+<p><%= render 'layouts/error_messages', model: @information %></p>
 <%= form_with model: @information,url: admin_information_path(@information),local:true do |f| %>
   <div>
     <%= f.label :information_title, "タイトル" %>
     <%= f.text_field :information_title %>
-  </iv>
+  </div>
   <div>
     <%= f.label :information_detail, "本文" %>
     <%= f.text_area :information_detail %>

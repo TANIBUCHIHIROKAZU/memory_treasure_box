@@ -9,7 +9,7 @@ class Memory < ApplicationRecord
 
 	accepts_attachments_for :memory_images, attachment: :image
 	
-	validates :memory_title,presence: true
+	validates :memory_title,presence: true, length: { maximum: 15 }
 	validates :memory_detail,presence: true
 	validates :status,presence: true
  	validate :validate_memory_images, if: :free_plan?

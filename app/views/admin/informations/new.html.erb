@@ -1,4 +1,5 @@
 <h3>投稿フォーム</h3>
+<p><%= render 'layouts/error_messages', model: @information %></p>
 <%= form_with model: @information,url: admin_informations_path, local:true do |f| %>
   <div>
     <%= f.label :information_title, "タイトル" %>

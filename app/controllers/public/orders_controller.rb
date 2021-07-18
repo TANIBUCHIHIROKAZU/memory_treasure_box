@@ -1,18 +1,19 @@
 class Public::OrdersController < ApplicationController
-  
+
   # 申し込み画面に遷移
   def plan_order
     if customer_signed_in?
       @order = Order.new
+      @order.plan = Order.plans.invert[params[:plan_id].to_i]
+      @order.price = Order.prices.invert[params[:price_id].to_i]
       @customer = current_customer
-      @plan_id = params[:id]
     else
       redirect_to root_path
       flash[:notice] = "購入するにはアカウントが必要です"
       return
     end
-    
-    if current_customer.plan_before_type_cast.to_s == params[:id] || test
+
+    if current_customer.plan_before_type_cast.to_s == params[:plan_id] || test
       redirect_to root_path
       flash[:notice] = "このアカウントのプランで購入できません"
       return
@@ -27,15 +28,16 @@ class Public::OrdersController < ApplicationController
      return
     end
     @customer = current_customer
-    @order_params = order_params
+    @order = Order.new(order_params)
+
   end
-  
+
   # orderに保存後、customerのplanにも保存をする
   def create
     @order = Order.new
-    @order.plan = order_params["plan"].to_i
-    @order.price = order_params["price"].to_i
-    @order.payment_method = order_params["payment_method"].to_i
+    @order.plan = order_params["plan"]
+    @order.price = order_params["price"]
+    @order.payment_method = order_params["payment_method"]
     @order.customer = current_customer
     if @order.save
       current_customer.update_attributes(plan: @order.plan )
@@ -50,7 +52,7 @@ private
   def order_params
     params.require(:order).permit(:payment_method,:price,:plan)
   end
-  
+
   def test
     # freeの人
     if current_customer.plan_before_type_cast.to_s == '0'
@@ -60,7 +62,7 @@ private
       return false
     # 2の人
     elsif current_customer.plan_before_type_cast.to_s == '2'
-      return params[:id].to_s == '1' ? true : false
+      return params[:plan_id].to_s == '1' ? true : false
     end
   end
 end

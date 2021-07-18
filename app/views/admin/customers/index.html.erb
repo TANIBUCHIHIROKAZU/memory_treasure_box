@@ -19,9 +19,10 @@
               <% end %>
             </td>
             <td></td>
-            <td><%= customer.is_active %></td>
-            <td><%= customer.plan %></td>
+            <td><%= customer.is_active_i18n %></td>
+            <td><%= customer.plan_i18n %></td>
           </tr>
         <% end %>
   </tbody>
 </table>
+<%= paginate @customer %>

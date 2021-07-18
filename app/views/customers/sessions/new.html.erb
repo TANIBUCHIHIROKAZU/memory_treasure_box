@@ -6,8 +6,9 @@
     <h2 class= "h6">新規ユーザーの方</h2>
     <p><%= link_to "アカウント作成", new_customer_registration_path %></p>
   </div>
-  
-  <%= flash[:error] %>
+  <% if flash[:alert] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email, "メールアドレス" %><br />

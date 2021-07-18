@@ -3,9 +3,9 @@
         <ul>
           <li>
             <%= information.created_at.strftime('%Y/%m/%d') %>
-            <%= information.admin_genre.name %>
+            <%= information.admin_genre&.name %>
             <%= information.information_title %>
           </li>
-        </ul> 
+        </ul>
       <% end %>
     <% end %>

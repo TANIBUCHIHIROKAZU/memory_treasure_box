@@ -19,7 +19,7 @@
   <% unless @customer.plan == "free_plan" %>
     <div>
       <div>支払い方法</div>
-      <div><%= @customer.orders.last.payment_method %></div>
+      <div><%= @customer.orders.last.payment_method_i18n %></div>
     </div>
   <% end %>
     <div>

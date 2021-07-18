@@ -1,7 +1,7 @@
 class Admin::CustomersController < ApplicationController
   
   def index
-    @customer = Customer.all
+    @customer = Customer.page(params[:page]).per(10)
   end
   
   def show
@@ -11,8 +11,8 @@ class Admin::CustomersController < ApplicationController
   def memory_index
     @customer = Customer.find(params[:id])
     @memory = @customer.memories
-    @memory_public = @memory.where(status: :public)
-    @memory_follower_only = @memory.where(status: :follower_only)
+    @memory_public = @memory.where(status: :public).page(params[:page]).per(10)
+    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(10)
   end
   
   def update

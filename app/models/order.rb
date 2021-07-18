@@ -11,4 +11,6 @@ class Order < ApplicationRecord
   enum price: { "free_price": 0, "200000": 1,"300000": 2}
   
   
+  
+  
 end

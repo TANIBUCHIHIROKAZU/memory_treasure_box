@@ -1,15 +1,17 @@
 <h3>カテゴリー</h3>
-<%= form_with model: @genre_new,url: admin_genres_path, lacal:true do |f| %>
+<p><%= render 'layouts/error_messages', model: @genre_new %></p>
+<%= form_with model: @genre_new,url: admin_genres_path, local:true do |f| %>
   <%= f.label :name, "カテゴリー" %>
   <%= f.text_field :name %>
   <div>
-  　<%= f.submit "作成する" %>
+    <%= f.submit "作成する" %>
   </div>
 <% end %>
 
 <table>
   <thead>
     <tr>
+      ジャンル一覧
     </tr>
   </thead>
   <tbody>
@@ -17,6 +19,7 @@
           <tr>
             <td>
               <%= genre.name %>
+              <%= link_to "削除",admin_genre_path(genre), method: :delete  %>
             </td>
           </tr>
         <% end %>

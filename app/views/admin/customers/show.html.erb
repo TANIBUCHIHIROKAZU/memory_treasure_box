@@ -1,11 +1,12 @@
 <%= link_to "戻る", admin_customers_path(@customer) %>
-  <% if flash[:success] %>
-    <p><%= render 'layouts/flash_messages' %></p>
-  <% end %>
 <h3>マイページ</h3><%= link_to  memory_index_admin_customer_path(@customer) do  %>
 <%= @customer.name %>の投稿一覧
 <% end %>
-<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, lacal:true do |f| %>
+  <% if flash[:success] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
+  <p><%= render 'layouts/error_messages', model: @customer %></p>
+<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local:true do |f| %>
     <%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
     <div>
       <%= f.label :name, "ユーザー名" %>
@@ -19,24 +20,24 @@
       <%= f.label :customer_number, "ID" %>
       <%= f.text_field :customer_number %>
     </div>
-  <%# unless @customer.plan == "無料" %>
-    <div>
-      <div>支払い方法</div>
-      <%#= @customer.order.payment_method %>
-    </div>
-  <%# end %>
-    <div>
-      <div>プラン</div>
-      <%= f.select :plan, Customer.plans.keys.to_a, {} %>
-    </div>
-  <%# unless @customer.plan == "無料" %>
-    <div>
-      <div>料金</div>
-      <%#= @customer.order.price %>
-    </div>
-  <%# end %>
+      <% unless @customer.plan == "free_plan" %>
+        <div>
+          <div>支払い方法</div>
+          <div><%= @customer.orders.last.payment_method_i18n %></div>
+        </div>
+      <% end %>
+        <div>
+          <div>プラン</div>
+          <div><%= @customer.plan_i18n %></div>
+        </div>
+      <% unless @customer.plan == "free_plan" %>
+        <div>
+          <div>料金</div>
+          <div><%= @customer.orders.last.price %></div>
+        </div>
+      <% end %>
   <div>会員ステータス</div>
-    <%= f.select :is_active, Customer.is_actives.keys.to_a, {} %>
+    <%= f.select :is_active, Customer.is_actives_i18n.keys.map{|k| [I18n.t("enums.customer.is_active.#{k}"), k]}%>
   <div>
   <%= f.submit "編集する" %>
   </div>
