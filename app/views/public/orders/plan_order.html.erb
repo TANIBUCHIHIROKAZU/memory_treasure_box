@@ -1,0 +1,31 @@
+<article>
+  <h1>申し込み</h1>
+  <%=  form_with model: @order,  url: confirmation_orders_path, method: :post, local: true do |f|%>
+    <dl>
+      <dt>ユーザー名:</dt>
+      <dd><%= @customer.name %></dd>
+      <dt>メールアドレス:</dt>
+      <dd><%= @customer.email %></dd>
+      <dt>支払い方法</dt>
+      <dd>
+        <%= f.label :銀行 %>
+        <%= f.radio_button :payment_method, "bank", checked: true %>
+        <%= f.label :クレジット %>
+        <%= f.radio_button :payment_method, "credit" %>
+      </dd>
+      <dt>プラン<dt>
+      <dd>
+        <%= @order.plan_i18n %>
+        <%= f.hidden_field :plan, value: @order.plan %>
+      </dd>
+      <dt>料金<dt>
+      <dd>
+        <%= @order.price %>
+        <%= f.hidden_field :price, value: @order.price %>
+      </dd>
+    </dl>
+    <p>
+      <%= f.submit '確認画面へ' %>
+    </p>
+  <% end %>
+</article>

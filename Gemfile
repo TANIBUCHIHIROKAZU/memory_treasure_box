@@ -72,3 +72,14 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 # deviseの導入
 gem 'devise'
+# 画像投稿機能導入
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+# 表示数を制限するため
+gem 'kaminari'
+gem 'enum_help'
+gem 'rails-i18n'
+
+group :production do
+  gem 'mysql2'
+end

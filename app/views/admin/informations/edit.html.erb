@@ -1,0 +1,20 @@
+<h1>編集フォーム</h1>
+<p><%= render 'layouts/error_messages', model: @information %></p>
+<%= form_with model: @information,url: admin_information_path(@information),local:true do |f| %>
+  <div>
+    <%= f.label :information_title, "タイトル" %>
+    <%= f.text_field :information_title %>
+  </div>
+  <div>
+    <%= f.label :information_detail, "本文" %>
+    <%= f.text_area :information_detail %>
+  </div>
+  <div>
+    <%= f.label :admin_genre_id, "カテゴリー" %>
+    <%=link_to "カテゴリー作成", admin_genres_path %>
+    <%= f.collection_select :admin_genre_id, AdminGenre.all, :id, :name, {include_blank: '選択してください'}, required: true %>
+  </div>
+  <div>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

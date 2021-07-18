@@ -1,0 +1,28 @@
+<h3>ユーザー一覧</h3>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>名前</th>
+      <th></th>
+      <th>ステータス</th>
+      <th>プラン</th>
+    </tr>
+  </thead>
+  <tbody>
+        <% @customer.each do |customer| %>
+          <tr>
+            <td></td>
+            <td>
+              <%= link_to admin_customer_path(customer) do %>
+                <%= customer.name %>
+              <% end %>
+            </td>
+            <td></td>
+            <td><%= customer.is_active_i18n %></td>
+            <td><%= customer.plan_i18n %></td>
+          </tr>
+        <% end %>
+  </tbody>
+</table>
+<%= paginate @customer %>

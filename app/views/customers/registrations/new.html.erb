@@ -1,0 +1,41 @@
+<h2>アカウント作成</h2>
+
+<h2>アカウントをお持ちの方</h2>
+  <p><%= link_to "サイトイン", new_customer_session_path %></p>
+
+<%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+  <%= render "customers/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :customer_number, "ID(半角英数字のみ)" %>
+    <%= f.text_field :customer_number, autofocus: true, autocomplete: "customer_number" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password,"パスワード(#{@minimum_password_length}文字以上)" %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "サイトアップ" %>
+  </div>
+<% end %>
+
+<div><%= link_to "トップに戻る", root_path %></div>
+
+

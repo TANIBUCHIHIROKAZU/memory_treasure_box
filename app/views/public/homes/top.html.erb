@@ -1,0 +1,12 @@
+<% if flash[:danger] %>
+  <p><%= render 'layouts/flash_messages' %></p>
+<% end %>
+<article>
+  <h3>ニュース</h3><%= link_to "ニュース一覧", informations_path %>
+  <%= render "public/informations/index", information: @information %>
+</article>
+<% if flash[:notice] %>
+  <%= render 'layouts/flash_messages' %>
+<% end %>
+<%= render 'public/orders/new', plan_id: 1, price_id: 1 %>
+<%= render 'public/orders/new', plan_id: 2, price_id: 2 %>

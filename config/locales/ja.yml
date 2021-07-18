@@ -1,0 +1,127 @@
+ja:
+  enums:
+    order:
+      plan:
+        plan_1: "スタンダードプラン"
+        plan_2: "デラックスプラン"
+      payment_method:
+        bank: "銀行"
+        credit: "クレジット"
+    customer:
+      plan:
+        free_plan: "ライトプラン"
+        plan_1: "スタンダードプラン"
+        plan_2: "デラックスプラン"
+      is_active:
+        active: "入会済み"
+        unsubscribe: "退会済み"
+
+
+  devise:
+    failure:
+      already_authenticated: 'すでにログインしています。'
+      inactive: 'アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。'
+      invalid: "%{authentication_keys} もしくはパスワードが不正です。"
+      locked: 'あなたのアカウントは凍結されています。'
+      last_attempt: 'あなたのアカウントが凍結される前に、複数回の操作がおこなわれています。'
+      not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
+      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
+      unauthenticated: 'アカウント登録もしくはログインしてください。'
+      unconfirmed: 'メールアドレスの本人確認が必要です。'
+  errors:
+    messages:
+      not_saved:
+        one: "エラーが発生したため %{resource} は保存されませんでした。"
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+    models:
+      customer:
+        attributes:
+          email:
+            taken: "は既に使用されています。"
+            blank: "が入力されていません。"
+            too_short: "は%{count}文字以上に設定して下さい。"
+            too_long: "は%{count}文字以下に設定して下さい。"
+            invalid: "は有効でありません。"
+          password:
+            taken: "は既に使用されています。"
+            blank: "が入力されていません。"
+            too_short: "は%{count}文字以上に設定して下さい。"
+            too_long: "は%{count}文字以下に設定して下さい。"
+            invalid: "は有効でありません。"
+            confirmation: "が内容とあっていません。"
+  activerecord:
+    errors:
+      models:
+        customer:
+        contact:
+        memory:
+          attributes:
+            email:
+              blank: "が入力されていません"
+              taken: "は既に使用されています"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            name:
+              blank: "が入力されていません"
+            password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません"
+              confirmation: "が内容とあっていません。"
+              taken: "は既に使用されています。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            customer_number:
+              blank: "が入力されていません"
+              invalid: "が半角英数字で入力されていません"
+              taken: "は既に使用されています"
+              too_short: "は%{count}文字以上に設定して下さい。"
+            encrypted_password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません"
+              confirmation: "が内容とあっていません。"
+              taken: "は既に使用されています。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+            password_confirmation:
+              confirmation: "が内容とあっていません。"
+            subject:
+              blank: "が入力されていません"
+            message:
+              blank: "が入力されていません"
+            memory_title:
+              blank: "が入力されていません"
+            memory_detail:
+              blank: "が入力されていません"
+
+    models:
+      customer: "ユーザー"
+    attributes:
+      customer:
+        name: "名前"
+        email: "メールアドレス"
+        customer_number: "ID"
+        icon: "プロフィール画像"
+        encrypted_password: "パスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+      contact:
+        name: "名前"
+        email: "メールアドレス"
+        subject: "件名"
+        message: "お問い合わせ内容詳細"
+      memory:
+        memory_title: "タイトル"
+        memory_detail: "本文"
+      information:
+        information_title: "タイトル"
+        information_detail: "本文"
+      admin_genre:
+        name: カテゴリー名
+
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日

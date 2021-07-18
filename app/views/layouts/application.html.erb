@@ -10,6 +10,37 @@
   </head>
 
   <body>
+    <header class="container bg-light">
+      <div class= "row d-flex justify-content-between">
+        <div class="col-xl-2 navbar-brand">
+            EndingCompany
+        </div> 
+        <nav class="navbar navbar-expand-lg navbar-light" >
+          <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+            <% if customer_signed_in? %>
+              <li class="nav-item"><%= link_to 'トップ', root_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'マイページ', customer_path(current_customer), class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to '私の思い出', memory_index_customer_path(current_customer), class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ユーザー一覧', customers_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to '思い出の保存', new_memory_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "nav-link" %></li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-item"><%= link_to 'トップ', root_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to '問い合わせ一覧', admin_contacts_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ユーザー一覧',admin_customers_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ニュース一覧',admin_informations_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ニュース投稿',new_admin_information_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to 'トップ', root_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to '問い合わせ', new_contact_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_customer_session_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'サインアップ', new_customer_registration_path, class: "nav-link" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>  
+    </header>
     <%= yield %>
   </body>
 </html>

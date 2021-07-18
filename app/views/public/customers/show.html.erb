@@ -1,0 +1,80 @@
+<h3>マイページ</h3>
+  <% if flash[:success] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
+  <p><%= render 'layouts/error_messages', model: @customer %></p>
+<%= form_with model: @customer,local:true do |f| %>
+    <div>
+      <div><%= f.label :name, "ユーザー名" %></div>
+      <div><%= f.text_field :name %></div>
+    </div>
+    <div>
+      <div><%= f.label :email, "メールアドレス" %></div>
+      <div><%= f.email_field :email %></div>
+    </div>
+    <div>
+      <div>ID</div>
+      <div><%= @customer.customer_number %></div>
+    </div>
+  <% unless @customer.plan == "free_plan" %>
+    <div>
+      <div>支払い方法</div>
+      <div><%= @customer.orders.last.payment_method_i18n %></div>
+    </div>
+  <% end %>
+    <div>
+      <div>プラン</div>
+      <div><%= @customer.plan_i18n %></div>
+    </div>
+  <% unless @customer.plan == "free_plan" %>
+    <div>
+      <div>料金</div>
+      <div><%= @customer.orders.last.price %></div>
+    </div>
+  <% end %>
+  <div>
+    <div>アイコン</div>
+    <div><%= f.attachment_field :icon %></div>
+    <div><%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %></div>
+  </div>
+  <div><%= f.submit "編集する" %></div>
+<% end %>
+<div>相互フォロー</div>
+<% @mutual_follow.each do |customer| %>
+  <%= link_to memory_index_customer_path(customer) do %>
+    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+    <%= customer.name %>
+      <% if current_customer.following?(customer) %>
+        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+      <% end %>
+  <% end %>
+<% end %>
+<%= paginate @mutual_follow %>
+<div>フォロー</div>
+<% @follow.each do |customer| %>
+  <%= link_to memory_index_customer_path(customer) do %>
+    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+    <%= customer.name %>
+      <% if current_customer.following?(customer) %>
+        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+      <% end %>
+  <% end %>
+<% end %>
+<%= paginate @follow %>
+
+<div>フォロワー</div>
+<% @follower.each do |customer| %>
+  <%= link_to memory_index_customer_path(customer) do %>
+    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+    <%= customer.name %>
+      <% if current_customer.following?(customer) %>
+        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+      <% end %>
+  <% end %>
+<% end %>

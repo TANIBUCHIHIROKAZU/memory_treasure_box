@@ -1,0 +1,13 @@
+<h3>最終確認</h3>
+ユーザー名:<%= @customer.name %>
+メールアドレス:<%= @customer.email %>
+<h3>支払い方法</h3>
+Payment method:<%= @order.payment_method_i18n %>
+Plan:<%= @order.plan_i18n %>
+Price:<%= @order.price %>
+<%= form_with model: Order.new, url: orders_path, method: :post, local: true do |f|%>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :plan, value: @order.plan %>
+  <%= f.hidden_field :price, value: @order.price %>
+  <%= f.submit 'Decide' %>
+<% end %>

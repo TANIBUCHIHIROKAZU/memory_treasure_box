@@ -1,0 +1,37 @@
+<div class= "container">
+  <div class= "mx-auto">
+  <h1 class="h3">サイトイン</h1>
+  
+  <div class= "row mx-auto">
+    <h2 class= "h6">新規ユーザーの方</h2>
+    <p><%= link_to "アカウント作成", new_customer_registration_path %></p>
+  </div>
+  <% if flash[:alert] %>
+    <p><%= render 'layouts/flash_messages' %></p>
+  <% end %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me,"パスワードを記憶する" %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
+
+  <div><%= link_to "トップに戻る", root_path %></div>
+  </div>
+</div>

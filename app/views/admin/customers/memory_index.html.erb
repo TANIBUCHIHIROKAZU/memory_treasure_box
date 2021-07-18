@@ -1,0 +1,27 @@
+<div>名前<%= @customer.name %></div>
+<div>プラン<%= @customer.plan %></div>
+<div>公開中</div>
+<% @memory_public.each do |memory| %>
+<div>
+  <%= link_to admin_memory_path(memory) do %>
+    <%= memory.memory_title %>
+    <% memory.memory_tags.each do |tag| %>
+      <%= tag.tag_name %>
+    <% end %>
+    <%= truncate(memory.memory_detail, length: 10) %>
+  <% end %>
+</div>
+<% end %>
+<%= paginate @memory_public %>
+
+<div>限定公開一覧</div>
+  <% @memory_follower_only.each do |memory| %>
+    <%= link_to admin_memory_path(memory) do %>
+      <%= memory.memory_title %>
+      <% memory.memory_tags.each do |tag| %>
+        <%= tag.tag_name %>
+      <% end %>
+      <%= truncate(memory.memory_detail, length: 10) %>
+    <% end %>
+  <% end %>
+<%= paginate @memory_follower_only %>

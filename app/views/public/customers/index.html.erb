@@ -1,0 +1,20 @@
+<h3>ユーザー一覧</h3>
+<% @customer.each do |customer| %>
+  <ul>
+    <li>
+      <%= link_to memory_index_customer_path(customer) do %>
+        <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+        <%= customer.name %>
+      
+        <% unless customer == current_customer %>
+          <% if current_customer.following?(customer) %>
+            <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+<%= paginate @customer %>

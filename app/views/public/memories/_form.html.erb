@@ -1,0 +1,37 @@
+
+<%= form_with model: memory,local:true do |f| %>
+  <div>
+    <div><%= f.label :memory_title, "タイトル" %></div>
+    <div><%= f.text_field :memory_title %></div>
+  </div>
+  <div>
+    <div><%= f.label :memory_detail, "本文" %></div>
+    <div><%= f.text_area :memory_detail %></div>
+  </div>
+  <% if current_customer.plan == "plan_1" %>
+  <div>
+    <div>画像</div>
+    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
+  </div>
+  <% elsif current_customer.plan == "plan_2" %>
+  <div>
+    <div>画像</div>
+    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
+  </div>
+  <div>
+    <div>タグ</div>
+    <div><%= f.text_field :tag_name %></div>
+  </div>
+  <% end %>
+  <div>
+    <h3>表示方法</h3>
+    <div><%= f.radio_button :status, :public,chack: true %></div>
+    <div><%= f.label :status, :全体に公開する %></div>
+    </br>
+    <div><%= f.radio_button :status, :follower_only %><div>
+    <div><%= f.label :status, :相互フォローのみ %><div>
+  </div>
+  <div>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>
