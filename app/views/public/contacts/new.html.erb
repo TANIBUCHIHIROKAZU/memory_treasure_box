@@ -1,26 +1,30 @@
 <section class= "container ">
-  <h1 class= "h3">お問い合わせ</h1>
-  <%= form_with model: @contact, url: confirm_contacts_path,local:true do |f| %>
+  <div class= "row offset-1 mt-3 mb-n5">
     <%= render 'layouts/error_messages', model: @contact %>
+  </div>
+  <div class= "row mt-5">
+    <h1 class= "h4 font-weight-bold col-md-4 offset-1">お問い合わせ</h1>
+  </div>
+  <%= form_with model: @contact, url: confirm_contacts_path,local:true do |f| %>
     <dl>
-      <div class= "row">
-        <dt class= "col-md-3 mx-auto">【名前】</dt>
-        <dd class= "col-md-8 mx-auto"><%= f.text_field :name, class: "form-control col-md-8 mx-auto" %></dd>
+      <div class= "row mt-5 offset-1">
+        <dt class= "col-md-4">【名前】</dt>
+        <dd class= "col-md-7"><%= f.text_field :name, class: "form-control" %></dd>
       </div>
-      <div class= "row">  
-        <dt class= "col-md-3 mx-auto">【メールアドレス】</dt>
-        <dd class= "col-md-8 mx-auto"><%= f.email_field :email, class: "form-control col-md-8 mx-auto" %></dd>
+      <div class= "row mt-5 offset-1">  
+        <dt class= "col-md-4">【メールアドレス】</dt>
+        <dd class= "col-md-7"><%= f.email_field :email, class: "form-control" %></dd>
       </div>
-      <div class= "row">
-        <dt class= "col-md-3 mx-auto">【件名】</dt>
-        <dd class= "col-md-8 mx-auto"><%= f.text_field :subject, class: "form-control col-md-8 mx-auto" %></dd>
+      <div class= "row mt-5 offset-1">
+        <dt class= "col-md-4">【件名】</dt>
+        <dd class= "col-md-7"><%= f.text_field :subject, class: "form-control" %></dd>
       </div>
-      <div class= "row">
-        <dt class= "col-md-3 mx-auto">【お問い合わせ内容詳細】</dt>
-        <dd class= "col-md-8 mx-auto"><%= f.text_area :message, class: "form-control col-md-8 mx-auto" , :rows => 7 %></dd>
+      <div class= "row mt-5 offset-1">
+        <dt class= "col-md-4">【お問い合わせ内容詳細】</dt>
+        <dd class= "col-md-7"><%= f.text_area :message, class: "form-control" , :rows => 7 %></dd>
       </div>
-      <div class= "row">
-        <%= f.submit '確認画面へ',class: "mx-auto btn btn-primary", style: "margin-top: 30px;" %>
+      <div class= "row mt-5 offset-3">
+        <%= f.submit '確認画面へ',class: "btn btn-primary col-2 badge-pill offset-2" %>
       </div>
     </dl>
   <% end %>

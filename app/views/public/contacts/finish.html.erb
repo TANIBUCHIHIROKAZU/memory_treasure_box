@@ -1,11 +1,26 @@
-<h3>送信完了しました</h3>
+<section class= "container">
+  <div class= "row mt-5">
+    <h3 class= "h3 font-weight-bold col-md-4 offset-1">送信完了しました</h3>
+  </div>
+  
   <dl>
-    <dt>名前</dt>
-    <dd><%= @contact.name %></dd>
-    <dt>メールアドレス</dt>
-    <dd><%= @contact.email %></dd>
-    <dt>件名</dt>
-    <dd><%= @contact.subject %></dd>
-    <dt>本文</dt>
-    <dd><%= @contact.message %></dd>
+    <div class= "row mt-5 offset-1">
+      <dt class= "col-md-4">名前</dt>
+      <dd class= "col-md-7"><%= @contact.name %></dd>
+    </div>
+    
+    <div class= "row mt-5 offset-1">
+      <dt class= "col-md-4">メールアドレス</dt>
+      <dd class= "col-md-7"><%= @contact.email %></dd>
+    </div>
+    
+    <div class= "row mt-5 offset-1">
+      <dt class= "col-md-4">件名</dt>
+      <dd class= "col-md-7"><%= @contact.subject %></dd>
+    </div>
+    
+    <div class= "row mt-5 offset-1">
+      <dt class= "col-md-4">本文</dt>
+      <dd class= "col-md-7"><%= @contact.message %></dd>
+    </div>
   </dl>
