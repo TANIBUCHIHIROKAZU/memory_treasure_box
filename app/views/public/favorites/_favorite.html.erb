@@ -1,9 +1,9 @@
 <% if memory.favorited_by?(current_customer) %>
     <%= link_to memory_favorites_path(memory), method: :delete, remote: true do %>
-     ♡<%= memory.favorites.count %>
+      <div class="text-danger font-weight-bold h4">♡<%= memory.favorites.count %></div>
     <% end %>
 <% else %>
     <%= link_to memory_favorites_path(memory), method: :post, remote: true do %>
-    ♡<%= memory.favorites.count %>
+      <div class="text-danger font-weight-bold h5 mb-0 my-auto">♡<%= memory.favorites.count %></div>
     <% end %>
 <% end %>

@@ -1,4 +1,3 @@
 
 
-料金 <%= Order.prices.invert[price_id] %>
-<%= link_to "試してみる", plan_order_path(plan_id,price_id) %>
+<%= link_to "購入する", plan_order_path(plan_id,price_id),class: "btn btn-primary badge-pill mt-4" %>

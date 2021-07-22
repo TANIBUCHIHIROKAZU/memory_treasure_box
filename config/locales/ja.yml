@@ -9,9 +9,9 @@ ja:
         credit: "クレジット"
     customer:
       plan:
-        free_plan: "ライトプラン"
-        plan_1: "スタンダードプラン"
-        plan_2: "デラックスプラン"
+        free_plan: "ライト"
+        plan_1: "スタンダード"
+        plan_2: "デラックス"
       is_active:
         active: "入会済み"
         unsubscribe: "退会済み"
@@ -115,6 +115,7 @@ ja:
       memory:
         memory_title: "タイトル"
         memory_detail: "本文"
+        memory_images: "画像"
       information:
         information_title: "タイトル"
         information_detail: "本文"

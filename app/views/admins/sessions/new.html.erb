@@ -1,18 +1,26 @@
-<h2>サイトイン</h2>
+<div class= "container">
+  <div class= "row offset-3 mt-3 mb-n5">
+    <% if flash[:alert] %>
+      <p><%= render 'layouts/flash_messages' %></p>
+    <% end %>
+  </div>
+  <div class= "row mt-5">
+    <h1 class="h4 font-weight-bold col-md-4 offset-3">管理者サイトイン</h1>
+  </div>
 <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row mt-5">
+    <%= f.label :email, "メールアドレス",class: "col-md-3 offset-3" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "col-md-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row mt-5">
+    <%= f.label :password, "パスワード", class: "col-md-3 offset-3" %>
+    <%= f.password_field :password, autocomplete: "current-password",class: "col-md-3 " %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="row mt-5">
+    <%= link_to "トップに戻る", root_path,class: "btn btn-primary col-2 badge-pill offset-3" %>
+    <%= f.submit "ログイン",class: "btn btn-primary col-2 badge-pill offset-2" %>
   </div>
 <% end %>
 
-<div><%= link_to "トップに戻る", root_path %></div>

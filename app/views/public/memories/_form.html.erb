@@ -1,37 +1,42 @@
 
 <%= form_with model: memory,local:true do |f| %>
-  <div>
-    <div><%= f.label :memory_title, "タイトル" %></div>
-    <div><%= f.text_field :memory_title %></div>
+  <div class="row mt-5 offset-1">
+    <%= f.label :memory_title, "タイトル",class: "col-md-4" %>
+    <%= f.text_field :memory_title,class: "col-md-7" %>
   </div>
-  <div>
-    <div><%= f.label :memory_detail, "本文" %></div>
-    <div><%= f.text_area :memory_detail %></div>
+  <div class="row mt-5 offset-1">
+    <%= f.label :memory_detail, "本文",class: "col-md-4" %>
+    <%= f.text_area :memory_detail,class: "col-md-7", :rows => 7 %>
   </div>
   <% if current_customer.plan == "plan_1" %>
-  <div>
-    <div>画像</div>
-    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
+  <div class="row mt-5 offset-1">
+    <div class="col-md-4">画像</div>
+    <%= f.attachment_field :memory_images_images, multiple: true,class: "input-group-text bg-light text-dark my-auto"  %>
   </div>
   <% elsif current_customer.plan == "plan_2" %>
-  <div>
-    <div>画像</div>
-    <div><%= f.attachment_field :memory_images_images, multiple: true %></div>
+  <div class="row mt-5 offset-1">
+    <div class="col-md-4">画像</div>
+    <div><%= f.attachment_field :memory_images_images, multiple: true,class: "input-group-text bg-light text-dark my-auto" %></div>
   </div>
-  <div>
-    <div>タグ</div>
-    <div><%= f.text_field :tag_name %></div>
+  <div class="row mt-5 offset-1">
+    <div class="col-md-4">タグ</div>
+    <%= f.text_field :tag_name,class: "col-md-7" %>
   </div>
   <% end %>
-  <div>
-    <h3>表示方法</h3>
-    <div><%= f.radio_button :status, :public,chack: true %></div>
-    <div><%= f.label :status, :全体に公開する %></div>
-    </br>
-    <div><%= f.radio_button :status, :follower_only %><div>
-    <div><%= f.label :status, :相互フォローのみ %><div>
+  <div class="row mt-5 offset-1">
+    <h3 class="h4 col-md-3 offset-1 mr-4 ">表示方法</h3>
+    <div class="mx-auto">
+      <div class="form-check">
+        <%= f.radio_button :status, :public,chack: true, class: "form-check-input"  %>
+        <%= f.label :status, :全体に公開する,class: "form-check-label" %>
+      </div>
+      <div class="form-check mt-2">
+        <%= f.radio_button :status, :follower_only, class: "form-check-input" %>
+        <%= f.label :status, :相互フォローのみ,class: "form-check-label" %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.submit '保存' %>
+  <div class= "row mt-5 offset-4">
+    <%= f.submit '保存',class: "btn btn-primary col-2 badge-pill offset-2" %>
   </div>
 <% end %>
