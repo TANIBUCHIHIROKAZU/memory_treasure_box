@@ -1,11 +1,14 @@
-    <% information.each do |information| %>
-      <%= link_to information_path(information) do %>
-        <ul>
-          <li>
-            <%= information.created_at.strftime('%Y/%m/%d') %>
-            <%= information.admin_genre&.name %>
-            <%= information.information_title %>
-          </li>
-        </ul>
+
+  <table class="table col-10 offset-1 my-auto py-5">
+    <tbody>
+      <% information.each do |information| %>
+          <%= link_to information_path(information) do %>
+            <tr class="col-10 offset-1 border-bottom border-2 py-5">
+              <td scope="row"><%= information.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= information.admin_genre&.name %></td>
+              <td><%= information.information_title %></td>
+            </tr>
+          <% end %>
       <% end %>
-    <% end %>
+    </tbody>
+  </table>

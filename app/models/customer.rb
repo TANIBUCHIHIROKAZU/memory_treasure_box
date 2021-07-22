@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_of_connections, source: :customer
   has_many :memory_tags, dependent: :destroy
 
-  attachment :icon
+  attachment :icon, content_type: ["image/jpeg", "image/png"]
 
   validates :name,presence: true
   validates :email,presence: true

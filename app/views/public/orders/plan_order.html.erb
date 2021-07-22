@@ -1,31 +1,47 @@
-<article>
-  <h1>申し込み</h1>
+<article class= "container">
+  <div class= "row mt-5">
+    <h1 class="h4 font-weight-bold col-md-4 offset-4">申し込み</h1>
+  </div>
   <%=  form_with model: @order,  url: confirmation_orders_path, method: :post, local: true do |f|%>
     <dl>
-      <dt>ユーザー名:</dt>
-      <dd><%= @customer.name %></dd>
-      <dt>メールアドレス:</dt>
-      <dd><%= @customer.email %></dd>
-      <dt>支払い方法</dt>
-      <dd>
-        <%= f.label :銀行 %>
-        <%= f.radio_button :payment_method, "bank", checked: true %>
-        <%= f.label :クレジット %>
-        <%= f.radio_button :payment_method, "credit" %>
-      </dd>
-      <dt>プラン<dt>
-      <dd>
-        <%= @order.plan_i18n %>
-        <%= f.hidden_field :plan, value: @order.plan %>
-      </dd>
-      <dt>料金<dt>
-      <dd>
-        <%= @order.price %>
-        <%= f.hidden_field :price, value: @order.price %>
-      </dd>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">ユーザー名:</dt>
+        <dd class= "col-md-3"><%= @customer.name %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">メールアドレス:</dt>
+        <dd class="col-md-3"><%= @customer.email %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4 mr-4 ">支払い方法</dt>
+        <dd>
+          <div class="form-check">
+            <%= f.radio_button :payment_method, "bank", checked: true, class: "form-check-input" %>
+            <%= f.label :銀行,class: "form-check-label" %>
+          </div>
+          <div class="form-check mt-2">
+            <%= f.radio_button :payment_method, "credit", class: "form-check-input" %>
+            <%= f.label :クレジット,class: "form-check-label" %>
+          </div>
+        </dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">プラン<dt>
+        <dd class= "col-md-3">
+          <%= @order.plan_i18n %>
+          <%= f.hidden_field :plan, value: @order.plan %>
+        </dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">料金<dt>
+        <dd class= "col-md-3">
+          <%= @order.price %>
+          <%= f.hidden_field :price, value: @order.price %>
+        </dd>
+      </div>
     </dl>
-    <p>
-      <%= f.submit '確認画面へ' %>
+    <p class= "row mt-5 offset-4">
+      <%= f.submit '確認画面へ',class: "btn btn-primary col-2 badge-pill offset-2" %>
     </p>
   <% end %>
 </article>

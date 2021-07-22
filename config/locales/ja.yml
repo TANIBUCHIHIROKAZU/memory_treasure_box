@@ -115,6 +115,7 @@ ja:
       memory:
         memory_title: "タイトル"
         memory_detail: "本文"
+        memory_images: "画像"
       information:
         information_title: "タイトル"
         information_detail: "本文"
