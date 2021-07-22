@@ -13,21 +13,24 @@
 
         <% memory.comments.each do |comment| %>
           <div class="col-8 offset-2 bg-primary text-white my-5 p-4">
-            <%= link_to memory_index_customer_path(comment.customer) do %>
-              <div class="row">
-                <div class="col-1"><%= attachment_image_tag comment.customer.icon, :icon, :fill, 60, 60, fallback: "no_image.jpg",class: "" %></div>
-  
-                <div class="text-white font-weight-bold col-2 my-auto"><%= comment.customer.name %></div>
-                <div class="text-white col-3 my-auto font-weight-bold mr-auto"><%= comment.created_at.strftime('%Y/%m/%d') %></div>
-                  <div class="col-2">
-                  <% if comment.customer.id == current_customer.id %>
-                    <%= link_to "削除", memory_comment_path(comment.memory_id, comment),method: :delete, remote: true,class: "text-danger btn btn-light badge-pill" %>
-                  <% end %>
-                  </div>
+
+            <div class="row" style="display:flex;justify-content:space-between;">
+              <div>
+              <%= link_to memory_index_customer_path(comment.customer) do %>
+                <%= attachment_image_tag comment.customer.icon, :icon, :fill, 60, 60, fallback: "no_image.jpg",class: "" %>
+                <span class="text-white font-weight-bold my-auto">　<%= comment.customer.name %></span>
+                　<span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+              <% end %>
               </div>
-            <% end %>
-            <div class="my-3">
-              <%= comment.comment %>
+              <div class="col-2">
+                <% if comment.customer.id == current_customer.id %>
+                  <%= link_to "削除", memory_comment_path(comment.memory_id, comment),method: :delete, remote: true,class: "text-danger btn btn-light badge-pill" %>
+                <% end %>
+              </div>
             </div>
+
+            <p class="my-3">
+              <%= comment.comment %>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui cum placeat ipsa adipisci. Mollitia facilis, debitis similique error quo, eum libero odio harum a fugiat id, doloremque sed ullam dolorem!</%>
+            </p>
           </div>
         <% end %>
