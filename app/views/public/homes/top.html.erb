@@ -1,5 +1,5 @@
 <div class="container">
-  <img src="/assets/Hero.jpg" class="img-fluid" alt="Responsive image">
+  <img src="<%= asset_path('/assets/Hero.jpg') %>" class="img-fluid" alt="Responsive image">
 </div>
 <% if flash[:danger] %>
   <p><%= render 'layouts/flash_messages' %></p>
@@ -20,7 +20,7 @@
                   <div class="col-4 text-body"><%= information.created_at.strftime('%Y/%m/%d') %></div>
                   <div class="col-4 text-body"><%= information.admin_genre&.name %></div>
                   <div class="col-3 text-body"><%= information.information_title %></div>
-                  <div class="col-1"><img src="/assets/asset1.png" alt="" class="asset1"></div>
+                  <div class="col-1"><img src="<%= asset_path("/assets/asset1.png") %>" alt="" class="asset1"></div>
                 <% end %>
               </td>
             </tr>
@@ -30,7 +30,7 @@
 </article>
 
 <div class="container">
-  <img src="/assets/box1.jpg" class="img-fluid mt-5" alt="Responsive image">
+  <img src="<%= asset_path("/assets/box1.jpg") %>" class="img-fluid mt-5" alt="Responsive image">
 </div>
 
 
