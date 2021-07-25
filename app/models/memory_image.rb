@@ -1,4 +1,4 @@
 class MemoryImage < ApplicationRecord
   belongs_to :memory
-  attachment :image
+  attachment :image, content_type: ["image/jpeg", "image/png"]
 end

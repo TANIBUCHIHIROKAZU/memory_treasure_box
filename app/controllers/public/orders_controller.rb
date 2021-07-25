@@ -13,7 +13,7 @@ class Public::OrdersController < ApplicationController
       return
     end
 
-    if current_customer.plan_before_type_cast.to_s == params[:plan_id] || test
+    if current_customer.plan_before_type_cast.to_s == params[:plan_id] || plan_verification
       redirect_to root_path
       flash[:notice] = "このアカウントのプランで購入できません"
       return
@@ -53,7 +53,7 @@ private
     params.require(:order).permit(:payment_method,:price,:plan)
   end
 
-  def test
+  def plan_verification
     # freeの人
     if current_customer.plan_before_type_cast.to_s == '0'
       return false

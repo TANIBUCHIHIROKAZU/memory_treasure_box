@@ -1,27 +1,60 @@
-<div>名前<%= @customer.name %></div>
-<div>プラン<%= @customer.plan %></div>
-<div>公開中</div>
-<% @memory_public.each do |memory| %>
-<div>
-  <%= link_to admin_memory_path(memory) do %>
-    <%= memory.memory_title %>
-    <% memory.memory_tags.each do |tag| %>
-      <%= tag.tag_name %>
-    <% end %>
-    <%= truncate(memory.memory_detail, length: 10) %>
-  <% end %>
-</div>
-<% end %>
-<%= paginate @memory_public %>
-
-<div>限定公開一覧</div>
-  <% @memory_follower_only.each do |memory| %>
-    <%= link_to admin_memory_path(memory) do %>
-      <%= memory.memory_title %>
-      <% memory.memory_tags.each do |tag| %>
-        <%= tag.tag_name %>
+<article class= "container">
+  <div class= "row mt-5">
+    <div class="h3 font-weight-bold col-2 offset-1 my-auto"><%= @customer.name %></div>
+    <div class="col-2 my-auto">プラン <%= @customer.plan_i18n %></div>
+  </div>
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2 mb-4">
+      <h2 class="h2 font-weight-bold col-md-4">公開中</h1>
+    </div>
+  </div>
+    <ul class="list-unstyled row justify-content-around">
+      <% @memory_public.each do |memory| %>
+        <li class="card mt-4" style="width: 18rem;">
+          <div class="card-body">
+            <%= link_to admin_memory_path(memory) do %>
+              <h6 class="card-title text-dark font-weight-bold"><%= memory.memory_title %></h6>
+              <p class="small card-text text-dark mb-3"><%= truncate(memory.memory_detail, length: 10) %></p>
+            <% end %>
+              <% memory.memory_tags.first(3).each do |tag| %>
+                <span class="badge badge-pill badge-primary"><%= tag.tag_name %></span>
+              <% end %>
+              <div class="text-danger font-weight-bold card-text mt-2">♡<%= memory.favorites.count %>
+                <span class="text-muted font-weight-bold card-text">コメント(<%= memory.comments.count %>)</span>
+              </div>
+          </div>
+        </li>              
       <% end %>
-      <%= truncate(memory.memory_detail, length: 10) %>
-    <% end %>
-  <% end %>
-<%= paginate @memory_follower_only %>
+    </ul>
+    <div class="d-flex justify-content-center mt-4">
+      <%= paginate @memory_public %>
+    </div>
+    
+<article>
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2 mb-4">
+      <h2 class="h2 font-weight-bold col-md-4">限定公開一覧</div>
+    </div>
+  </div>
+    <ul class="list-unstyled row justify-content-around">
+      <% @memory_follower_only.each do |memory| %>
+        <li class="card mt-4" style="width: 18rem;">
+          <div class="card-body">
+            <%= link_to admin_memory_path(memory) do %>
+              <h6 class="card-title text-dark font-weight-bold"><%= memory.memory_title %></h6>
+              <p class="small card-text text-dark mb-3"><%= truncate(memory.memory_detail, length: 20) %></p>
+            <% end %>
+            <% memory.memory_tags.first(3).each do |tag| %>
+              <span class="badge badge-pill badge-primary"><%= tag.tag_name %></span>
+            <% end %>
+              <div class="text-danger font-weight-bold card-text mt-2">♡<%= memory.favorites.count %>
+                <span class="text-muted font-weight-bold card-text">コメント(<%= memory.comments.count %>)</span>
+              </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="d-flex justify-content-center mt-4">
+      <%= paginate @memory_follower_only %>
+    </div>
+</article>

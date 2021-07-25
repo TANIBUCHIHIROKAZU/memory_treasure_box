@@ -1,13 +1,35 @@
-<h3>最終確認</h3>
-ユーザー名:<%= @customer.name %>
-メールアドレス:<%= @customer.email %>
-<h3>支払い方法</h3>
-Payment method:<%= @order.payment_method_i18n %>
-Plan:<%= @order.plan_i18n %>
-Price:<%= @order.price %>
+<article class= "container">
+  <div class= "row mt-5">
+    <h1 class="h4 font-weight-bold col-md-4 offset-4">最終確認</h1>
+  </div>
+    <dl>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">ユーザー名:</dt>
+        <dd class= "col-md-3"><%= @customer.name %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">メールアドレス:</dt>
+        <dd class="col-md-3"><%= @customer.email %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">支払い方法:</dt>
+        <dd class="col-md-3"><%= @order.payment_method_i18n %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">プラン:</dt>
+        <dd class="col-md-3"><%= @order.plan_i18n %></dd>
+      </div>
+      <div class="row mt-5">
+        <dt class="col-md-3 offset-4">料金:</dt>
+        <dd class="col-md-3"><%= @order.price %></dd>
+      </div>
+
 <%= form_with model: Order.new, url: orders_path, method: :post, local: true do |f|%>
   <%= f.hidden_field :payment_method, value: @order.payment_method %>
   <%= f.hidden_field :plan, value: @order.plan %>
   <%= f.hidden_field :price, value: @order.price %>
-  <%= f.submit 'Decide' %>
+  <p class= "row mt-5 offset-4">
+    <%= f.submit '購入する',class: "btn btn-primary col-2 badge-pill offset-2" %>
+  </p>
 <% end %>
+</article>

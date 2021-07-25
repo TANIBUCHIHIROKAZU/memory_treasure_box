@@ -1,80 +1,153 @@
-<h3>マイページ</h3>
+<section class= "container">
   <% if flash[:success] %>
-    <p><%= render 'layouts/flash_messages' %></p>
+    <p class= "row offset-3"><%= render 'layouts/flash_messages' %></p>
   <% end %>
-  <p><%= render 'layouts/error_messages', model: @customer %></p>
-<%= form_with model: @customer,local:true do |f| %>
-    <div>
-      <div><%= f.label :name, "ユーザー名" %></div>
-      <div><%= f.text_field :name %></div>
-    </div>
-    <div>
-      <div><%= f.label :email, "メールアドレス" %></div>
-      <div><%= f.email_field :email %></div>
-    </div>
-    <div>
-      <div>ID</div>
-      <div><%= @customer.customer_number %></div>
-    </div>
-  <% unless @customer.plan == "free_plan" %>
-    <div>
-      <div>支払い方法</div>
-      <div><%= @customer.orders.last.payment_method_i18n %></div>
-    </div>
-  <% end %>
-    <div>
-      <div>プラン</div>
-      <div><%= @customer.plan_i18n %></div>
-    </div>
-  <% unless @customer.plan == "free_plan" %>
-    <div>
-      <div>料金</div>
-      <div><%= @customer.orders.last.price %></div>
-    </div>
-  <% end %>
-  <div>
-    <div>アイコン</div>
-    <div><%= f.attachment_field :icon %></div>
-    <div><%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %></div>
-  </div>
-  <div><%= f.submit "編集する" %></div>
-<% end %>
-<div>相互フォロー</div>
-<% @mutual_follow.each do |customer| %>
-  <%= link_to memory_index_customer_path(customer) do %>
-    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
-    <%= customer.name %>
-      <% if current_customer.following?(customer) %>
-        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-      <% end %>
-  <% end %>
-<% end %>
-<%= paginate @mutual_follow %>
-<div>フォロー</div>
-<% @follow.each do |customer| %>
-  <%= link_to memory_index_customer_path(customer) do %>
-    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
-    <%= customer.name %>
-      <% if current_customer.following?(customer) %>
-        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-      <% end %>
-  <% end %>
-<% end %>
-<%= paginate @follow %>
+  <p class= "row offset-3">
+    <%= render 'layouts/error_messages', model: @customer %>
+  </p>
 
-<div>フォロワー</div>
-<% @follower.each do |customer| %>
-  <%= link_to memory_index_customer_path(customer) do %>
-    <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
-    <%= customer.name %>
-      <% if current_customer.following?(customer) %>
-        <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
+
+      <div class= "row mt-5">
+        <h1 class= "h4 font-weight-bold col-md-4 offset-1">マイページ</h3>
+      </div>
+    <%= form_with model: @customer,local:true do |f| %>
+      <div class="row">
+        <div class="col-6">
+            <div class="row mt-3">
+              <%= f.label :name, "ユーザー名",class: "col-md-4 my-auto" %>
+              <%= f.text_field :name,class: "col-md-6" %>
+            </div>
+            <div class="row mt-5">
+              <%= f.label :email, "メールアドレス",class: "col-md-4" %>
+              <%= f.email_field :email,class: "col-md-6" %>
+            </div>
+            <div class="row mt-5">
+              <div class= "col-md-4">ID</div>
+              <div class= "col-md-6"><%= @customer.customer_number %></div>
+            </div>
+          <% unless @customer.plan == "free_plan" %>
+            <div class="row mt-5">
+              <div class= "col-md-4">支払い方法</div>
+              <div class= "col-md-6"><%= @customer.orders.last.payment_method_i18n %></div>
+            </div>
+          <% end %>
+            <div class="row mt-5">
+              <div class= "col-md-4">プラン</div>
+              <div class= "col-md-6"><%= @customer.plan_i18n %></div>
+            </div>
+          <% unless @customer.plan == "free_plan" %>
+            <div class="row mt-5">
+              <div class= "col-md-4">料金</div>
+              <div class= "col-md-6"><%= @customer.orders.last.price %></div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-6">
+          <div class="row mt-1">
+            <div class= "col-md-4 my-auto">アイコン</div>
+            <div class="my-auto"><%= f.attachment_field :icon,class: "input-group-text bg-light text-dark my-auto" %></div>
+          </div>
+          <div class="m-5"><%= attachment_image_tag @customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %></div>
+        </div>
+      </div>
+          <div class="row mt-5">
+            <%= f.submit "編集する",class: "btn btn-primary col-2 badge-pill offset-2" %>
+          </div>
+    <% end %>
+    
+<article class= "container">
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2 ">
+      <h1 class="h2 font-weight-bold col-md-4">相互フォロー</h1>
+    </div>
+  </div>
+  <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
+    <% @mutual_follow.each do |customer| %>
+          <li class="p-4 bg-light mr-3" style="display: flex;">
+            <div>
+              <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
+            </div>
+            <div class="text-center">
+              <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+              <% unless customer == current_customer %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
+                <% else %>
+                  <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
+    <% end %>
+  </ul>
+</article>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @mutual_follow %>
+</div>
+
+
+<article class= "container">
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2 ">
+      <h1 class="h2 font-weight-bold col-md-4">フォロー</h1>
+    </div>
+  </div>
+  <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
+    <% @follow.each do |customer| %>
+    <li class="p-4 bg-light mr-3" style="display: flex;">
+      <div>
+        <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
+      </div>
+      <div class="text-center">
+        <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+        <% unless customer == current_customer %>
+          <% if current_customer.following?(customer) %>
+            <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
+          <% else %>
+            <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
+          <% end %>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</article>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @follow %>
+</div>
+
+
+<article class= "container">
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2 ">
+      <h1 class="h2 font-weight-bold col-md-4">フォロワー</h1>
+    </div>
+  </div>
+    <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
+        <% @follower.each do |customer| %>
+          <li class="p-4 bg-light mr-3" style="display: flex;">
+            <div>
+              <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
+            </div>
+            <div class="text-center">
+              <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+              <% unless customer == current_customer %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
+                <% else %>
+                  <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
       <% end %>
-  <% end %>
-<% end %>
+    </ul>
+</article>
+
+
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @follower %>
+  </div>

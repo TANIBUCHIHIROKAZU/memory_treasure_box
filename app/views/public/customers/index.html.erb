@@ -1,20 +1,40 @@
-<h3>ユーザー一覧</h3>
+<article class= "container">
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 border-bottom border-2">
+      <h1 class="h2 font-weight-bold col-md-4">ユーザー一覧</h1>
+    </div>
+  </div>
+  <ul class="list-unstyled row">
+    <div class="justify-content-around row">
 <% @customer.each do |customer| %>
-  <ul>
-    <li>
+      <li class= "col-3 m-4 py-3 bg-light">
       <%= link_to memory_index_customer_path(customer) do %>
-        <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
-        <%= customer.name %>
-      
-        <% unless customer == current_customer %>
-          <% if current_customer.following?(customer) %>
-            <%= link_to 'フォロー外す', unfollow_path(customer.id), method: :POST %>
-          <% else %>
-            <%= link_to 'フォローする', follow_path(customer.id), method: :POST %>
-          <% end %>
-        <% end %>
+
+          <div class="row">
+            <div class="col-md-4 mx-auto">
+                <%= attachment_image_tag customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'60x60' %>
+            </div>
+            <div class="col-md-8">
+              <div class="text-center font-weight-bold text-dark">
+                <%= customer.name %>
+              </div>
       <% end %>
-    </li>
-  </ul>
+              <div class="text-center mt-1">
+                <% unless customer == current_customer %>
+                  <% if current_customer.following?(customer) %>
+                    <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill" %>
+                  <% else %>
+                    <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      </li>
 <% end %>
-<%= paginate @customer %>
+    </div>
+  </ul>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @customer %>
+  </div>
+</article>
