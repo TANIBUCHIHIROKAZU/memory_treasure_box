@@ -1,10 +1,27 @@
-<h3>お問い合わせ一覧</h3>
-<% @contact.each do |contact| %>
- <div>
-  <%= link_to admin_contact_path(contact) do %>
-    <%= contact.created_at.strftime('%Y/%m/%d') %>
-    <%= contact.name %>
-    <%= truncate(contact.subject,length: 20)  %>
-  <% end %>
-<% end %> 
-<%= paginate @contact %>
+  <div class= "row mt-5">
+    <div class="col-8 offset-2 ">
+      <h1 class="h2 font-weight-bold col-md-4">お問い合わせ一覧</h1>
+    </div>
+  </div>
+  
+  <table class="table col-8 offset-2 my-auto py-5">
+    <tbody>
+      <% @contact.each do |contact| %>
+        <tr class="col-10 offset-1 border-bottom border-2 py-5">
+          <td>
+            <%= link_to admin_contact_path(contact),class: "row text-decoration-none" do %>
+              <div class="col-4 text-body"><%= contact.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="col-4 text-body"><%= contact.name %></div>
+              <div class="col-3 text-body"><%= truncate(contact.subject,length: 15)  %></div>
+              <div class="col-1"><img src="/assets/asset1.png" alt="" class="asset1"></div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>      
+      
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @contact %>
+</div>

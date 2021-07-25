@@ -1,27 +1,36 @@
-<h3>カテゴリー</h3>
-<p><%= render 'layouts/error_messages', model: @genre_new %></p>
+<div class= "container">
+  <div class= "row offset-3 mt-3 mb-n5">
+    <%= render 'layouts/error_messages', model: @genre_new %>
+  </div>
+  <div class= "row mt-5">
+    <h2 class= "h4 font-weight-bold col-md-4 offset-1">カテゴリー</h2>
+  </div>
+
 <%= form_with model: @genre_new,url: admin_genres_path, local:true do |f| %>
-  <%= f.label :name, "カテゴリー" %>
-  <%= f.text_field :name %>
-  <div>
-    <%= f.submit "作成する" %>
+  <div class="row mt-5 offset-1">
+    <%= f.label :name, "カテゴリー",class: "col-md-4" %>
+    <%= f.text_field :name,class: "col-md-7" %>
+  </div>
+  <div class= "row mt-5 offset-4">
+    <%= f.submit "作成する",class: "btn btn-primary col-2 badge-pill offset-2" %>
   </div>
 <% end %>
-
-<table>
-  <thead>
-    <tr>
-      ジャンル一覧
-    </tr>
-  </thead>
+<div class= "row mt-5 mb-4">
+    <h2 class= "h4 font-weight-bold col-md-8 offset-2">カテゴリー一覧</h2>
+</div>
+<table class="table col-8 offset-2 my-auto py-5">
   <tbody>
         <% @genres.each do |genre| %>
-          <tr>
+          <tr class="col-10 offset-1 border-bottom border-2 py-5">
             <td>
               <%= genre.name %>
-              <%= link_to "削除",admin_genre_path(genre), method: :delete  %>
+              <%= link_to "削除",admin_genre_path(genre), method: :delete,class: "ml-3"  %>
             </td>
           </tr>
         <% end %>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @genres %>
+</div>

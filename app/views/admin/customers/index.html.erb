@@ -1,5 +1,10 @@
-<h3>ユーザー一覧</h3>
-<table>
+  <div class= "row mt-5">
+    <div class="col-10 offset-1">
+      <h1 class="h2 font-weight-bold col-md-4">ユーザー一覧</h1>
+    </div>
+  </div>
+
+<table class="table col-10 offset-1 my-auto py-5">
   <thead>
     <tr>
       <th></th>
@@ -7,22 +12,26 @@
       <th></th>
       <th>ステータス</th>
       <th>プラン</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
         <% @customer.each do |customer| %>
-          <tr>
+          <tr class="col-10 offset-1 border-bottom border-2 py-5">
             <td></td>
             <td>
-              <%= link_to admin_customer_path(customer) do %>
+              <%= link_to admin_customer_path(customer),class: "row text-decoration-none" do %>
                 <%= customer.name %>
               <% end %>
             </td>
             <td></td>
             <td><%= customer.is_active_i18n %></td>
             <td><%= customer.plan_i18n %></td>
+            <th><img src="/assets/asset1.png" alt="" class="admin_asset1"></th>
           </tr>
         <% end %>
   </tbody>
 </table>
-<%= paginate @customer %>
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @customer %>
+</div>

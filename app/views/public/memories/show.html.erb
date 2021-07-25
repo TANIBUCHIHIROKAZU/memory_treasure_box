@@ -48,7 +48,7 @@
 </div>
 
   <div class="col-10 offset-1">
-    <div class="row my-5 mx-auto justify-content-between">
+    <div class="row my-5 mx-auto justify-content-between" style="gap: 20px;">
         <% if @memory.memory_images.present? %>
           <% @memory.memory_images.each do |image| %>
             <%= attachment_image_tag image, :image, :fill, 200, 200, size:'200x200',class: "img-thumbnail" %>

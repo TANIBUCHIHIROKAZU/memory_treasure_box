@@ -11,7 +11,22 @@
         <%= link_to "ニュース一覧", informations_path,class: "text-dark col-2 font-weight-bold my-auto btn btn-outline-primary mr-3" %>
       </div>
     </div>
-      <%= render "public/informations/index", information: @information %>
+  <table class="table col-10 offset-1 my-auto py-5">
+    <tbody>
+      <% @information.each do |information| %>
+            <tr class="col-10 offset-1 border-bottom border-2 py-5">
+              <td>
+                <%= link_to information_path(information),class: "row text-decoration-none" do %>
+                  <div class="col-4 text-body"><%= information.created_at.strftime('%Y/%m/%d') %></div>
+                  <div class="col-4 text-body"><%= information.admin_genre&.name %></div>
+                  <div class="col-3 text-body"><%= information.information_title %></div>
+                  <div class="col-1"><img src="/assets/asset1.png" alt="" class="asset1"></div>
+                <% end %>
+              </td>
+            </tr>
+      <% end %>
+    </tbody>
+  </table>
 </article>
 
 <div class="container">
@@ -134,7 +149,7 @@
   <div class="h2 font-weight-bold mb-3">お気軽にお問い合わせください</div>
   <div>メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。</div>
   <div class="mt-4">
-    <%= link_to "問い合わせ", new_contact_path,class: "col-2 font-weight-bold my-3 btn btn-outline-dark mr-3 badge-pill text-primary" %>
+    <%= link_to "問い合わせ", new_contact_path,class: "col-3 font-weight-bold my-3 btn btn-outline-dark mr-3 badge-pill text-primary" %>
   </div>
 </div>
   
