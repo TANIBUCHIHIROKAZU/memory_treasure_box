@@ -27,7 +27,7 @@
             <td></td>
             <td><%= customer.is_active_i18n %></td>
             <td><%= customer.plan_i18n %></td>
-            <th><img src="/assets/asset1.png" alt="" class="admin_asset1"></th>
+            <th><img src="<%= asset_path("/assets/asset1.png") %>" alt="" class="admin_asset1"></th>
           </tr>
         <% end %>
   </tbody>
