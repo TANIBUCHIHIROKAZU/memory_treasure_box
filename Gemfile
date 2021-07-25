@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # デバック
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -65,8 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 環境変数の管理
 gem 'dotenv-rails'
-# デバック
-gem 'pry-byebug'
 # bootstrapの導入
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
