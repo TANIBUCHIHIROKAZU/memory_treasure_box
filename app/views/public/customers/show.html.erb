@@ -55,43 +55,38 @@
             <%= f.submit "編集する",class: "btn btn-primary col-2 badge-pill offset-2" %>
           </div>
     <% end %>
+    
 <article class= "container">
   <div class= "row mt-5">
     <div class="col-10 offset-1 border-bottom border-2 ">
       <h1 class="h2 font-weight-bold col-md-4">相互フォロー</h1>
     </div>
   </div>
-  <ul class="list-unstyled row">
-    <div class="justify-content-around row">
-<% @mutual_follow.each do |customer| %>
-    <li class= "col-3 m-4 py-3 bg-light">
-  <%= link_to memory_index_customer_path(customer) do %>
-      <div class="row">
-        <div class="col-md-4 mx-auto">
-          <%= attachment_image_tag customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'60x60' %>
-        </div>
-        <div class="col-md-8">
-          <div class="text-center font-weight-bold text-dark">
-            <%= customer.name %>
-          </div>
-  <% end %>
-          <div class="text-center mt-1">
-            <% if current_customer.following?(customer) %>
-              <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill" %>
-            <% else %>
-              <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill" %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </li>
-<% end %>
-    </div>
+  <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
+    <% @mutual_follow.each do |customer| %>
+          <li class="p-4 bg-light mr-3" style="display: flex;">
+            <div>
+              <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
+            </div>
+            <div class="text-center">
+              <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+              <% unless customer == current_customer %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
+                <% else %>
+                  <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
+    <% end %>
   </ul>
+</article>
+
 <div class="d-flex justify-content-center mt-4">
   <%= paginate @mutual_follow %>
 </div>
-</article>
+
 
 <article class= "container">
   <div class= "row mt-5">
@@ -99,57 +94,19 @@
       <h1 class="h2 font-weight-bold col-md-4">フォロー</h1>
     </div>
   </div>
-    <ul class="list-unstyled row">
-      <div class="justify-content-around row">
-        <% @follow.each do |customer| %>
-          <li class= "col-3 m-4 py-3 bg-light">
-            <%= link_to memory_index_customer_path(customer) do %>
-            <div class="row">
-              <div class="col-md-4 mx-auto">
-                <%= attachment_image_tag customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'60x60' %>
-              </div>
-              <div class="col-md-8">
-                <div class="text-center font-weight-bold text-dark">
-                  <%= customer.name %>
-                </div>
-            <% end %>
-                <div class="text-center mt-1">
-                  <% unless customer == current_customer %>
-                    <% if current_customer.following?(customer) %>
-                      <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill" %>
-                    <% else %>
-                      <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill" %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-        </li>
-        <% end %>
-    </div>
-  </ul>
-  <div class="d-flex justify-content-center mt-4">
-    <%= paginate @follow %>
-  </div>
-</article>
-
-<article class= "container">
-  <div class= "row mt-5 text-center">
-      <h1 class="h2 font-weight-bold col-md-4">test</h1>
-  </div>
-  <ul style="display: flex;justify-content: flex-start;gap: 20px;">
+  <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
     <% @follow.each do |customer| %>
-    <li style="display: flex;background-color: limegreen;">
+    <li class="p-4 bg-light mr-3" style="display: flex;">
       <div>
         <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
       </div>
-      <div>
-        <%= customer.name %><br>
+      <div class="text-center">
+        <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
         <% unless customer == current_customer %>
           <% if current_customer.following?(customer) %>
-            <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill" %>
+            <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
           <% else %>
-            <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill" %>
+            <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
           <% end %>
         <% end %>
       </div>
@@ -158,40 +115,38 @@
   </ul>
 </article>
 
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @follow %>
+</div>
+
+
+<article class= "container">
   <div class= "row mt-5">
     <div class="col-10 offset-1 border-bottom border-2 ">
       <h1 class="h2 font-weight-bold col-md-4">フォロワー</h1>
     </div>
   </div>
-    <ul class="list-unstyled row">
-      <div class="justify-content-around row">
+    <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
         <% @follower.each do |customer| %>
-          <li class= "col-3 m-4 py-3 bg-light">
-            <%= link_to memory_index_customer_path(customer) do %>
-            <div class="row">
-              <div class="col-md-4 mx-auto">
-                <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60' %>
-              </div>
-              <div class="col-md-8">
-                <div class="text-center font-weight-bold text-dark">
-                  <%= customer.name %>
-                </div>
-            <% end %>
-                <div class="text-center mt-1">
-                  <% unless customer == current_customer %>
-                    <% if current_customer.following?(customer) %>
-                      <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill" %>
-                    <% else %>
-                      <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill" %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
+          <li class="p-4 bg-light mr-3" style="display: flex;">
+            <div>
+              <%= attachment_image_tag customer, :icon, :fill, 60, 60, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
             </div>
-        </li>
-        <% end %>
-    </div>
-  </ul>
+            <div class="text-center">
+              <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+              <% unless customer == current_customer %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
+                <% else %>
+                  <%= link_to 'フォロー', follow_path(customer.id), method: :POST,class: "btn btn-outline-primary badge-pill mt-1" %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
+      <% end %>
+    </ul>
+</article>
+
 
   <div class="d-flex justify-content-center mt-4">
     <%= paginate @follower %>

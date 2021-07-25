@@ -1,13 +1,39 @@
   <% if flash[:success] %>
     <p><%= render 'layouts/flash_messages' %></p>
   <% end %>
-<%= @information.created_at.strftime('%Y/%m/%d') %>
-<h3><%= @information.information_title %></h3>
-<div><%= @information.admin_genre&.name %></div>
-<% if @information.admin.id == current_admin.id %>
- <%= link_to "編集", edit_admin_information_path(@information) %>
- <%= link_to "削除", admin_information_path(@information), method: :delete %>
-<% end %>
-<%= link_to "戻る", admin_informations_path %>
-<div><%= @information.information_detail %></div>
+<div class= "row mt-5">
+  <div class="col-10 offset-1 mb-2">
+    <p class="font-weight-bold col-md-8"><%= @information.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+</div>
+<div class= "row">
+  <div class="col-10 offset-1 mb-2">
+    <h1 class="h2 font-weight-bold col-md-8"><%= @information.information_title %></h1>
+  </div>
+</div>
+  <ul class="row list-unstyled">
+    <div class="border-bottom border-2 col-10 offset-1">
+      <div class="d-flex">
+        <li class="nav-item col-md-2 mr-auto">
+          <div class="h font-weight-bold"><%= @information.admin_genre&.name %></div>
+        </li>
+        <li class="nav-item col-md-1">
+          <%= link_to "編集", edit_admin_information_path(@information) %>
+        </li>
+        <li class="nav-item col-md-1">
+          <%= link_to "削除", admin_information_path(@information), method: :delete %>
+        </li>
+        <li class="nav-item col-md-1">
+          <%= link_to "戻る", admin_informations_path %>
+        </li>
+      </div>
+    </div>
+  </ul>
+  
+  <div class="row my-5">
+    <div class="col-10 offset-1">
+      <%= @information.information_detail %>
+    </div>
+  </div>
+    
 

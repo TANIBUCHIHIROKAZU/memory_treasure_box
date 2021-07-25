@@ -1,44 +1,71 @@
-<%= link_to "戻る", admin_customers_path(@customer) %>
-<h3>マイページ</h3><%= link_to  memory_index_admin_customer_path(@customer) do  %>
-<%= @customer.name %>の投稿一覧
-<% end %>
+<section class= "container">
+  
   <% if flash[:success] %>
-    <p><%= render 'layouts/flash_messages' %></p>
+    <p class= "row offset-3"><%= render 'layouts/flash_messages' %></p>
   <% end %>
-  <p><%= render 'layouts/error_messages', model: @customer %></p>
-<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local:true do |f| %>
-    <%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
-    <div>
-      <%= f.label :name, "ユーザー名" %>
-      <%= f.text_field :name %>
-    <div>
-    <div>
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email %>
-    <div>
-    <div>
-      <%= f.label :customer_number, "ID" %>
-      <%= f.text_field :customer_number %>
-    </div>
-      <% unless @customer.plan == "free_plan" %>
-        <div>
-          <div>支払い方法</div>
-          <div><%= @customer.orders.last.payment_method_i18n %></div>
-        </div>
-      <% end %>
-        <div>
-          <div>プラン</div>
-          <div><%= @customer.plan_i18n %></div>
-        </div>
-      <% unless @customer.plan == "free_plan" %>
-        <div>
-          <div>料金</div>
-          <div><%= @customer.orders.last.price %></div>
-        </div>
-      <% end %>
-  <div>会員ステータス</div>
-    <%= f.select :is_active, Customer.is_actives_i18n.keys.map{|k| [I18n.t("enums.customer.is_active.#{k}"), k]}%>
-  <div>
-  <%= f.submit "編集する" %>
+  <p class= "row offset-3">
+    <%= render 'layouts/error_messages', model: @customer %>
+  </p>
+
+<%= link_to "戻る", admin_customers_path(@customer), class: "col-md-2 offset-2 mt-5 text-center" %>
+
+  <div class= "row mt-2">
+    <h1 class= "h4 font-weight-bold col-md-2 offset-2 my-auto">マイページ</h1>
+    <%= link_to  memory_index_admin_customer_path(@customer) , class:"my-auto" do  %>
+      <%= @customer.name %>の投稿一覧
+    <% end %>
   </div>
+  
+
+<div class="offset-2 mt-5">
+<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local:true do |f| %>
+  <div class="row">
+    <div class="col-6">
+      <div class="row mt-3">
+        <%= f.label :name, "ユーザー名",class: "col-md-4 my-auto" %>
+        <%= f.text_field :name,class: "col-md-6" %>
+      </div>
+      <div class="row mt-5">
+        <%= f.label :email, "メールアドレス",class: "col-md-4" %>
+        <%= f.email_field :email,class: "col-md-6" %>
+      </div>
+      <div class="row mt-5">
+        <%= f.label :customer_number, "ID",class: "col-md-4" %>
+        <%= f.text_field :customer_number,class: "col-md-6" %>
+      </div>
+    <%= attachment_image_tag @customer, :icon, :fill, 60, 60, fallback: "no_image.jpg" %>
+
+
+      <% unless @customer.plan == "free_plan" %>
+        <div class="row mt-5">
+          <div class= "col-md-4">支払い方法</div>
+          <div class= "col-md-6"><%= @customer.orders.last.payment_method_i18n %></div>
+        </div>
+      <% end %>
+        <div class="row mt-5">
+          <div class= "col-md-4">プラン</div>
+          <div class= "col-md-6"><%= @customer.plan_i18n %></div>
+        </div>
+      <% unless @customer.plan == "free_plan" %>
+        <div class="row mt-5">
+          <div class= "col-md-4">料金</div>
+          <div class= "col-md-6"><%= @customer.orders.last.price %></div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="col-6">
+      <div class="row mt-3">
+        <div class= "col-md-4">会員ステータス</div>
+        <%= f.select :is_active, Customer.is_actives_i18n.keys.map{|k| [I18n.t("enums.customer.is_active.#{k}"), k]} %>
+      </div>
+      
+    </div>
+
+  </div>
+  
+      <div class="row mt-5 offset-3">
+        <%= f.submit "編集する",class: "btn btn-primary col-2 badge-pill offset-2" %>
+      </div>
 <% end %>
+</div>

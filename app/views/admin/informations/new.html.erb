@@ -1,20 +1,28 @@
-<h3>投稿フォーム</h3>
-<p><%= render 'layouts/error_messages', model: @information %></p>
+<div class= "container">
+  <div class= "row offset-3 mt-3 mb-n5">
+    <%= render 'layouts/error_messages', model: @information %> 
+  </div>
+  <div class= "row mt-5">
+    <h2 class= "h4 font-weight-bold col-md-4 offset-1">投稿フォーム</h2>
+  </div>
+
 <%= form_with model: @information,url: admin_informations_path, local:true do |f| %>
-  <div>
-    <%= f.label :information_title, "タイトル" %>
-    <%= f.text_field :information_title %>
+  <div class="row mt-5 offset-1">
+    <%= f.label :information_title, "タイトル",class: "col-md-4" %>
+    <%= f.text_field :information_title,class: "col-md-7" %>
   </div>
-  <div>
-    <%= f.label :information_detail, "本文" %>
-    <%= f.text_area :information_detail %>
+  <div class="row mt-5 offset-1">
+    <%= f.label :information_detail, "本文",class: "col-md-4" %>
+    <%= f.text_area :information_detail,class: "col-md-7", :rows => 7  %>
   </div>
-  <div>
-    <%= f.label :admin_genre_id, "カテゴリー" %>
+  <div class="row mt-5 offset-1">
+    <%= f.label :admin_genre_id, "カテゴリー",class: "col-md-4" %>
+    <div>
+    <%= f.collection_select :admin_genre_id, AdminGenre.all, :id, :name, {include_blank: '選択してください'}, required: true %><br>
     <%=link_to "カテゴリー作成", admin_genres_path %>
-    <%= f.collection_select :admin_genre_id, AdminGenre.all, :id, :name, {include_blank: '選択してください'}, required: true %>
+    </div>
   </div>
-  <div>
-    <%= f.submit '保存' %>
+  <div class= "row mt-5 offset-4">
+    <%= f.submit '保存',class: "btn btn-primary col-2 badge-pill offset-2" %>
   </div>
 <% end %>

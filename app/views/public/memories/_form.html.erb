@@ -8,21 +8,21 @@
     <%= f.label :memory_detail, "本文",class: "col-md-4" %>
     <%= f.text_area :memory_detail,class: "col-md-7", :rows => 7 %>
   </div>
-  <% if current_customer.plan == "plan_1" %>
-  <div class="row mt-5 offset-1">
-    <div class="col-md-4">画像</div>
-    <%= f.attachment_field :memory_images_images, multiple: true,class: "input-group-text bg-light text-dark my-auto"  %>
-  </div>
-  <% elsif current_customer.plan == "plan_2" %>
-  <div class="row mt-5 offset-1">
-    <div class="col-md-4">画像</div>
-    <div><%= f.attachment_field :memory_images_images, multiple: true,class: "input-group-text bg-light text-dark my-auto" %></div>
-  </div>
-  <div class="row mt-5 offset-1">
-    <div class="col-md-4">タグ</div>
-    <%= f.text_field :tag_name,class: "col-md-7" %>
-  </div>
+  
+  <% if current_customer.plan == "plan_1" || current_customer.plan == "plan_2" %>
+    <div class="row mt-5 offset-1">
+      <div class="col-md-4">画像</div>
+      <%= f.attachment_field :memory_images_images, multiple: true,class: "input-group-text bg-light text-dark my-auto"  %>
+    </div>
   <% end %>
+  
+  <% if current_customer.plan == "plan_2" %>
+    <div class="row mt-5 offset-1">
+      <div class="col-md-4">タグ</div>
+      <%= f.text_field :tag_name,class: "col-md-7" %>
+    </div>
+  <% end %>
+  
   <div class="row mt-5 offset-1">
     <h3 class="h4 col-md-3 offset-1 mr-4 ">表示方法</h3>
     <div class="mx-auto">
