@@ -1,10 +1,11 @@
-  <div class= "row mt-5">
-    <div class="col-8 offset-2 ">
+<article class= "container">
+  <div class= "row mt-5 mb-3">
+    <div class="col-10 offset-1 ">
       <h1 class="h2 font-weight-bold col-md-4">お問い合わせ一覧</h1>
     </div>
   </div>
   
-  <table class="table col-8 offset-2 my-auto py-5">
+  <table class="table col-10 offset-1 my-auto py-5">
     <tbody>
       <% @contact.each do |contact| %>
         <tr class="col-10 offset-1 border-bottom border-2 py-5">
@@ -25,3 +26,4 @@
 <div class="d-flex justify-content-center mt-4">
   <%= paginate @contact %>
 </div>
+</article>

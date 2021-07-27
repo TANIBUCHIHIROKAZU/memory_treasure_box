@@ -9,16 +9,16 @@ class Admins::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-   def create
-     super
-     flash[:notice] = nil
-   end
+  def create
+    super
+    flash[:notice] = nil
+  end
 
   # DELETE /resource/sign_out
-   def destroy
-     super
-     flash[:notice] = nil
-   end
+  def destroy
+    super
+    flash[:notice] = nil
+  end
 
   # protected
 
@@ -33,6 +33,4 @@ class Admins::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     new_admin_session_path
   end
-  
-  
 end

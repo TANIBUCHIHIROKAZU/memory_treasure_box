@@ -9,17 +9,18 @@ class Customers::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-   def create
-     super
-     flash[:notice] = nil
-   end
+  def create
+    super
+    flash[:notice] = nil
+  end
 
   # DELETE /resource/sign_out
   def destroy
     super
     flash[:notice] = nil
   end
- before_action :reject_user, only: [:create]
+  before_action :reject_user, only: [:create]
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -27,11 +28,10 @@ class Customers::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-
   def reject_user
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
-      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
         flash[:error] = "退会済みです。"
         redirect_to new_customer_session_path
       end
@@ -40,9 +40,8 @@ class Customers::SessionsController < Devise::SessionsController
     end
   end
 
-
   def after_sign_in_path_for(resource)
-   customer_path(resource)
+    customer_path(resource)
   end
 
   def after_sign_out_path_for(resource)

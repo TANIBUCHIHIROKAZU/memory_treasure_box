@@ -23,13 +23,14 @@
         <dt class="col-md-3 offset-4">料金:</dt>
         <dd class="col-md-3"><%= @order.price %></dd>
       </div>
-
-<%= form_with model: Order.new, url: orders_path, method: :post, local: true do |f|%>
-  <%= f.hidden_field :payment_method, value: @order.payment_method %>
-  <%= f.hidden_field :plan, value: @order.plan %>
-  <%= f.hidden_field :price, value: @order.price %>
-  <p class= "row mt-5 offset-4">
-    <%= f.submit '購入する',class: "btn btn-primary col-2 badge-pill offset-2" %>
-  </p>
-<% end %>
+    </dl>
+  
+  <%= form_with model: Order.new, url: orders_path, method: :post, local: true do |f|%>
+    <%= f.hidden_field :payment_method, value: @order.payment_method %>
+    <%= f.hidden_field :plan, value: @order.plan %>
+    <%= f.hidden_field :price, value: @order.price %>
+    <p class= "row mt-5 offset-4">
+      <%= f.submit '購入する',class: "btn btn-primary col-2 badge-pill offset-2" %>
+    </p>
+  <% end %>
 </article>

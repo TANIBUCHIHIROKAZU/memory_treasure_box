@@ -1,4 +1,5 @@
-  <div class= "row mt-5">
+<article class= "container">
+  <div class= "row mt-5 mb-3">
     <div class="col-10 offset-1">
       <div class="row">
         <h1 class="h2 font-weight-bold col-md-4 ml-5">ユーザー一覧</h1>
@@ -7,34 +8,35 @@
     </div>
   </div>
 
-<table class="table col-10 offset-1 my-auto py-5">
-  <thead>
-    <tr>
-      <th></th>
-      <th>名前</th>
-      <th></th>
-      <th>ステータス</th>
-      <th>プラン</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-        <% @customer.each do |customer| %>
-          <tr class="col-10 offset-1 border-bottom border-2 py-5">
-            <td></td>
-            <td>
-              <%= link_to admin_customer_path(customer),class: "row text-decoration-none" do %>
-                <%= customer.name %>
-              <% end %>
-            </td>
-            <td></td>
-            <td><%= customer.is_active_i18n %></td>
-            <td><%= customer.plan_i18n %></td>
-            <th><img src="<%= asset_path("asset1.png") %>" alt="" class="admin_asset1"></th>
-          </tr>
-        <% end %>
-  </tbody>
-</table>
-<div class="d-flex justify-content-center mt-4">
-  <%= paginate @customer %>
-</div>
+  <table class="table col-10 offset-1 my-auto py-5">
+    <thead>
+      <tr>
+        <th></th>
+        <th>名前</th>
+        <th></th>
+        <th>ステータス</th>
+        <th>プラン</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+          <% @customer.each do |customer| %>
+            <tr class="col-10 offset-1 border-bottom border-2 py-5">
+              <td></td>
+              <td>
+                <%= link_to admin_customer_path(customer),class: "row text-decoration-none" do %>
+                  <%= customer.name %>
+                <% end %>
+              </td>
+              <td></td>
+              <td><%= customer.is_active_i18n %></td>
+              <td><%= customer.plan_i18n %></td>
+              <th><img src="<%= asset_path("asset1.png") %>" alt="" class="admin_asset1"></th>
+            </tr>
+          <% end %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @customer %>
+  </div>
+</article>
