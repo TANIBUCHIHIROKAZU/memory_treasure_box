@@ -1,0 +1,6 @@
+<div class="mt-1 mr-3 ml-auto">
+<%= form_with url: search_customers_path, method: :get, local: true do |f| %>
+  <%= f.text_field :search,placeholder: "IDを検索" %>
+  <%= f.submit '検索', :name => nil %>
+<% end %>
+</div>

@@ -1,4 +1,5 @@
 class Admin::MemoriesController < ApplicationController
+  
   def show
     begin
       @memory = Memory.find(params[:id])

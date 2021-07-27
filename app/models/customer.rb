@@ -24,6 +24,11 @@ class Customer < ApplicationRecord
   enum plan: { "free_plan": 0, "plan_1": 1,"plan_2": 2}
   enum is_active: { "active": true, "unsubscribe": false }
   
+  def self.search(search)
+    return Customer.all unless search
+    Customer.where(['customer_number LIKE ?', "%#{search}%"])
+  end
+  
   # フォローをする
   def follow(other_customer_id)
     unless self == other_customer_id

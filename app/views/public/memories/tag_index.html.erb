@@ -1,10 +1,5 @@
-<article class= "container">
-  <div class= "row mt-5">
-    <div class="h3 font-weight-bold col-2 offset-1 my-auto"><%= @customer.name %></div>
-    <div class="col-2 my-auto">プラン <%= @customer.plan_i18n %></div>
-    <div class="col-2 my-auto">ID <%= @customer.customer_number %></div>
-  </div>
-  <div class= "row mt-5">
+<%= @tag.tag_name %>
+<div class= "row mt-5">
     <div class="col-10 offset-1 border-bottom border-2 mb-4">
       <h2 class="h2 font-weight-bold col-md-4">公開中</h1>
     </div>
@@ -58,5 +53,3 @@
   <div class="d-flex justify-content-center mt-4">
     <%= paginate @memory_follower_only %>
   </div>
-
-</article>

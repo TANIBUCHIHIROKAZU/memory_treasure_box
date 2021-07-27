@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+ before_action :authenticate_customer!
  
  # コメント作成
  def create

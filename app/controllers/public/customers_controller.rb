@@ -25,6 +25,9 @@ class Public::CustomersController < ApplicationController
    @follower = current_customer.follower.page(params[:page]).per(9)
   end
 
+  def search
+    @customers = Customer.search(params[:search]).page(params[:page]).per(9)
+  end
 
   def update
    @customer = Customer.find(params[:id])
