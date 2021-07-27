@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
+  
   # 申し込み画面に遷移
   def plan_order
     if customer_signed_in?

@@ -2,6 +2,7 @@
   <div class= "row mt-5">
     <div class="h3 font-weight-bold col-2 offset-1 my-auto"><%= @customer.name %></div>
     <div class="col-2 my-auto">プラン <%= @customer.plan_i18n %></div>
+    <div class="col-2 my-auto">ID <%= @customer.customer_number %></div>
   </div>
   <div class= "row mt-5">
     <div class="col-10 offset-1 border-bottom border-2 mb-4">
@@ -17,7 +18,7 @@
               <p class="small card-text text-dark mb-3"><%= truncate(memory.memory_detail, length: 10) %></p>
             <% end %>
               <% memory.memory_tags.first(3).each do |tag| %>
-                <span class="badge badge-pill badge-primary"><%= tag.tag_name %></span>
+                <span class="badge badge-pill badge-primary"><%= link_to tag.tag_name, tag_index_path(memory_tag_id: tag.id) %></span>
               <% end %>
               <div class="text-danger font-weight-bold card-text mt-2">♡<%= memory.favorites.count %>
                 <span class="text-muted font-weight-bold card-text">コメント(<%= memory.comments.count %>)</span>

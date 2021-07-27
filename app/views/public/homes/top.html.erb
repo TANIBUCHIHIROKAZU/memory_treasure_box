@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="card my-5 py-3 mx-2" style="width: 20rem;">
       <div class="card-body my-3">
         <h5 class="h2 card-title text-center font-weight-bold">スタンダード</h5>
@@ -108,7 +108,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="card my-5 py-3 mx-2" style="width: 20rem;">
       <div class="card-body my-3">
         <h5 class="h2 card-title text-center font-weight-bold">デラックス</h5>
@@ -152,7 +152,14 @@
     <%= link_to "問い合わせ", new_contact_path,class: "col-3 font-weight-bold my-3 btn btn-outline-dark mr-3 badge-pill text-primary" %>
   </div>
 </div>
-  
+
+
+  <span id="back">
+    <%= link_to root_path do %>
+      <img src="<%= asset_path("arrow.png") %>" alt="">
+    <% end %>
+  </span>
+
 <footer class="col-10 offset-1", style="background-color: #f9fdff;">
 
   <section class="pt-5">
@@ -189,7 +196,8 @@
   </section>
 
   <div class="text-center p-4 bg-light">
-    © 2021 Copyright:MDBootstrap.com
+    © 2021 EndingCompanyあ.com
   </div>
 
 </footer>
+
