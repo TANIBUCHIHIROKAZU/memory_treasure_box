@@ -6,7 +6,8 @@ class Public::FavoritesController < ApplicationController
     favorite = current_customer.favorites.new(memory_id: @memory.id)
     favorite.save
   end
-  #　いいね 
+
+  # 　いいね
   def destroy
     @memory = Memory.find(params[:memory_id])
     favorite = current_customer.favorites.find_by(memory_id: @memory.id)

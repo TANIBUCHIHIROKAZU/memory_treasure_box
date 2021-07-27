@@ -13,12 +13,12 @@
       <% @memory_public.each do |memory| %>
             <li class="card mt-4" style="width: 18rem;">
               <div class="card-body">
-                <%= link_to memory_path(memory) do %>
+                <%= link_to admin_memory_path(memory) do %>
                   <h6 class="card-title text-dark font-weight-bold"><%= memory.memory_title %></h6>
                   <p class="small card-text text-dark mb-3"><%= truncate(memory.memory_detail,length: 20) %></p>
                 <% end %>
                     <% memory.memory_tags.first(3).each do |tag| %>
-                      <span><%= link_to tag.tag_name, tag_index_path(@customer,tag),class: "badge badge-pill badge-primary" %></span>
+                      <span><%= link_to tag.tag_name, admin_tag_index_path(@customer,tag),class: "badge badge-pill badge-primary" %></span>
                     <% end %>
                     <div class="text-danger font-weight-bold card-text mt-2">♡<%= memory.favorites.count %>
                       <span class="text-muted font-weight-bold card-text">コメント(<%= memory.comments.count %>)</span>
@@ -36,16 +36,15 @@
     </div>
   </div>
   <ul class="list-unstyled row justify-content-around">
-    <% if current_customer.mutual_follow?(@customer) || @customer == current_customer %>
       <% @memory_follower_only.each do |memory| %>
         <li class="card mt-4" style="width: 18rem;">
           <div class="card-body">
-            <%= link_to memory_path(memory) do %>
+            <%= link_to admin_memory_path(memory) do %>
               <h6 class="card-title text-dark font-weight-bold"><%= memory.memory_title %></h6>
               <p class="small card-text text-dark mb-3"><%= truncate(memory.memory_detail, length: 20) %></p>
             <% end %>
               <% memory.memory_tags.first(3).each do |tag| %>
-                <span><%= link_to tag.tag_name, tag_index_path(@customer,tag),class: "badge badge-pill badge-primary" %></span>
+                <span><%= link_to tag.tag_name, admin_tag_index_path(@customer,tag),class: "badge badge-pill badge-primary" %></span>
               <% end %>
               <div class="text-danger font-weight-bold card-text mt-2">♡<%= memory.favorites.count %>
                 <span class="text-muted font-weight-bold card-text">コメント(<%= memory.comments.count %>)</span>
@@ -53,7 +52,6 @@
           </div>
         </li>
       <% end %>
-    <% end %>
   </ul>
   <div class="d-flex justify-content-center mt-4">
     <%= paginate @memory_follower_only %>
