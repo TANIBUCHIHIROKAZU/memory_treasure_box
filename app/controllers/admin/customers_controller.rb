@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @customer = Customer.page(params[:page]).per(9)
@@ -6,6 +7,10 @@ class Admin::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
+  end
+  
+  def search
+    @customers = Customer.search(params[:search]).page(params[:page]).per(9)
   end
   
   def memory_index

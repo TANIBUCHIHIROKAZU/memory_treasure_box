@@ -19,7 +19,10 @@ Rails.application.routes.draw do
    resources :customers, only: [:index, :show, :update] do
       member do
       get 'memory_index'
-    end
+      end
+      collection do
+      get "search"
+      end
    end
    resources :informations
    resources :contacts, only: [:index, :destroy, :show]
@@ -38,6 +41,9 @@ Rails.application.routes.draw do
    resources :customers, only: [:index, :show, :update] do
     member do
       get 'memory_index'
+    end
+    collection do
+      get "search"
     end
    end
    resources :contacts, only: [:new, :create] do
@@ -60,5 +66,10 @@ Rails.application.routes.draw do
    post 'unfollow/:id' => 'connections#destroy', as: 'unfollow' # フォロー外す
    get 'orders/plan_order/:price_id/:plan_id' => 'orders#plan_order', as: 'plan_order'
    get 'memories' => 'memories#create', as: 'memory_create'
+
+  get '/memory_tags/:customer_id/:memory_tag_id/tag_index' => 'memories#tag_index', as: 'tag_index'
+  # get '/memory_tags/:memory_tag_id/tag_index' => 'memories#tag_index', as: 'tag_index'
+  
+
   end
 end
