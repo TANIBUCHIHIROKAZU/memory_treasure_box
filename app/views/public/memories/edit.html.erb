@@ -1,2 +1,9 @@
-<h3>編集フォーム</h3>
-<%= render 'form', memory: @memory %>
+<article class= "container">
+  <div class= "row offset-3 mt-3 mb-n5">
+    <%= render 'layouts/error_messages', model: @memory %>
+  </div>
+  <div class= "row mt-5">
+    <h1 class="h4 font-weight-bold col-md-4 offset-1">編集フォーム</h1>
+  </div>
+  <%= render 'form', memory: @memory %>
+</article>

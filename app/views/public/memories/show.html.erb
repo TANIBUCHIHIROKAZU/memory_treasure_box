@@ -1,62 +1,66 @@
-  <% if flash[:danger] %>
-    <p class= "row offset-3"><%= render 'layouts/flash_messages' %></p>
-  <% end %>
-<div class= "row mt-5">
-  <div class="col-10 offset-1 mb-2">
-    <h1 class="h2 font-weight-bold col-md-8"><%= @memory.memory_title %></h1>
-  </div>
-</div>
-
-  <ul class="row list-unstyled">
-    <div class="border-bottom border-2 col-10 offset-1">
-      <div class="d-flex">
-        <li class="nav-item col-md-2">
-          <div class="h5 font-weight-bold">名前 <%= @memory.customer.name %></div>
-        </li>
-        <li class="nav-item col-md-1">
-          <div id="favorite_<%= @memory.id %>">
-            <%= render "public/favorites/favorite", memory: @memory %>
-          </div>
-        </li>
-        <li class="nav-item col-md-3 font-weight-bold mr-auto">
-          <% @memory_tags.each do |tag| %>
-          <%= link_to tag.tag_name, tag_index_path(@customer,tag) %>
-          <% end %>
-        </li>
-        <li class="nav-item col-md-2 font-weight-bold">
-          <%= @memory.created_at.strftime('%Y/%m/%d') %>
-        </li>
-    <% if @memory.customer.id == current_customer.id %>
-        <li class="nav-item col-md-1">
-          <%= link_to "編集", edit_memory_path(@memory) %>
-        </li>
-        <li class="nav-item col-md-1 ">
-          <%= link_to "削除", memory_path(@memory), method: :delete,class: "text-danger" %>
-        </li>
+<article class= "container">
+    <% if flash[:danger] %>
+      <p class= "row offset-3"><%= render 'layouts/flash_messages' %></p>
     <% end %>
-        <li class="nav-item col-md-1">
-          <%= link_to "戻る", memory_index_customer_path(@memory.customer_id) %>
-        </li>
-      </div>
+  <div class= "row mt-5">
+    <div class="col-10 offset-1 mb-2">
+      <h1 class="h2 font-weight-bold col-md-8"><%= @memory.memory_title %></h1>
     </div>
-  </ul>
-
-<div class="row my-5">
-  <div class="col-10 offset-1">
-    <%= @memory.memory_detail %>
-  </div>
-</div>
-
-  <div class="col-10 offset-1">
-    <div class="row my-5 mx-auto justify-content-between" style="gap: 20px;">
-        <% if @memory.memory_images.present? %>
-          <% @memory.memory_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 200, 200, size:'200x200',class: "img-thumbnail" %>
-          <% end %>
-        <% end %>
-     </div>
   </div>
   
-<div id="comment">
- <%= render "public/comments/comment", memory: @memory,comment: @comment %>
-</div>
+    <ul class="row list-unstyled">
+      <div class="border-bottom border-2 col-10 offset-1">
+        <div class="d-flex">
+          <li class="nav-item col-md-3">
+            <p class="h5 font-weight-bold">名前 <%= @memory.customer.name %></p>
+          </li>
+          <li class="nav-item col-md-1">
+            <div id="favorite_<%= @memory.id %>">
+              <%= render "public/favorites/favorite", memory: @memory %>
+            </div>
+          </li>
+          <li class="nav-item col-md-3 font-weight-bold mr-auto">
+            <p>タグ：
+              <% @memory_tags.each do |tag| %>
+              <%= link_to tag.tag_name, tag_index_path(tag.customer,tag) %>
+              <% end %>
+            </p>
+          </li>
+          <li class="nav-item col-md-2 font-weight-bold">
+            <p><%= @memory.created_at.strftime('%Y/%m/%d') %></p>
+          </li>
+      <% if @memory.customer.id == current_customer.id %>
+          <li class="nav-item col-md-1">
+            <p><%= link_to "編集", edit_memory_path(@memory) %></p>
+          </li>
+          <li class="nav-item col-md-1 ">
+            <p><%= link_to "削除", memory_path(@memory), method: :delete,class: "text-danger" %></p>
+          </li>
+      <% end %>
+          <li class="nav-item col-md-1">
+            <p><%= link_to "戻る", memory_index_customer_path(@memory.customer_id) %></p>
+          </li>
+        </div>
+      </div>
+    </ul>
+  
+  <div class="row my-5">
+    <p class="col-10 offset-1">
+      <%= @memory.memory_detail %>
+    </p>
+  </div>
+  
+    <div class="col-10 offset-1">
+      <div class="row my-5 mx-auto justify-content-between" style="gap: 20px;">
+          <% if @memory.memory_images.present? %>
+            <% @memory.memory_images.each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 200, 200, size:'200x200',class: "img-thumbnail" %>
+            <% end %>
+          <% end %>
+       </div>
+    </div>
+    
+  <div id="comment">
+   <%= render "public/comments/comment", memory: @memory,comment: @comment %>
+  </div>
+</article>
