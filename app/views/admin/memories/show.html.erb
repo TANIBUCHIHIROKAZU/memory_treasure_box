@@ -33,7 +33,7 @@
     
     <div class="row my-5">
       <div class="col-10 offset-1">
-        <%= @memory.memory_detail %>
+        <%=safe_join(@memory.memory_detail.split("\n"),tag(:br))%>
       </div>
     </div>
     

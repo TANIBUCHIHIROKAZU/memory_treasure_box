@@ -28,7 +28,7 @@
     
     <div class="row my-5">
       <div class="col-10 offset-1">
-        <%= @contact.message %>
+        <%=safe_join(@contact.message.split("\n"),tag(:br))%>
       </div>
     </div>
 </article>
