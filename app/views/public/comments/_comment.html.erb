@@ -30,7 +30,7 @@
             </div>
 
             <p class="my-3">
-              <%= comment.comment %>
+              <%=safe_join(comment.comment.split("\n"),tag(:br))%>
             </p>
           </div>
         <% end %>

@@ -4,16 +4,16 @@
       <h1 class="h2 font-weight-bold col-md-4">ニュース一覧</h1>
     </div>
   </div>
-  
+
   <table class="table col-10 offset-1 my-auto py-5">
     <tbody>
       <% @information.each do |information| %>
         <tr class="col-10 offset-1 border-bottom border-2 py-5">
           <td>
             <%= link_to admin_information_path(information),class: "row text-decoration-none" do %>
-              <div class="col-4 text-body"><%= information.created_at.strftime('%Y/%m/%d') %></div>
-              <div class="col-4 text-body"><%= information.admin_genre&.name %></div>
-              <div class="col-3 text-body"><%= information.information_title %></div>
+              <div class="col-3 text-body"><%= information.created_at.strftime('%Y/%m/%d') %></div>
+              <div class="col-3 text-body"><%= information.admin_genre&.name %></div>
+              <div class="col-4 text-body"><%= truncate(information.information_title,length: 15)  %></div>
               <div class="col-1"><img src="<%= asset_path("asset1.png") %>" alt="" class="asset1"></div>
             <% end %>
           </td>
@@ -21,7 +21,7 @@
       <% end %>
     </tbody>
   </table>
-  
+
   <div class="d-flex justify-content-center mt-4">
     <%= paginate @information %>
   </div>

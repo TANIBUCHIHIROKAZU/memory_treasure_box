@@ -33,7 +33,7 @@
     
     <div class="row my-5">
       <div class="col-10 offset-1">
-        <%= @information.information_detail %>
+        <%=safe_join(@information.information_detail.split("\n"),tag(:br))%>
       </div>
     </div>
 </div>    
