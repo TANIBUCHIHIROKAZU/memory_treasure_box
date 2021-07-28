@@ -40,8 +40,6 @@ class Public::MemoriesController < ApplicationController
     if @memory.save
       if current_customer.plan == "plan_2"
         @memory.save_memory_tag(tag_list, current_customer)
-      else
-        flash[:danger] = "あなたのプランではタグ機能は使用できません"
       end
       redirect_to memory_path(@memory)
     else

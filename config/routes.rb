@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   # moduleでURLは変更せず、ファイルパスを変更する
   scope module: :public do
     root 'homes#top'
+    get '/homes/about' => 'homes#about'
     resources :memories, except: [:index] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

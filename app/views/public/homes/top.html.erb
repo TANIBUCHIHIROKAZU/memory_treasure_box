@@ -33,6 +33,10 @@
   <img src="<%= asset_path("box1.jpg") %>" class="img-fluid mt-5" alt="Responsive image">
 </div>
 
+<div class="container">
+  <img src="<%= asset_path("aaaa.jpg") %>" class="img-fluid mt-5" alt="Responsive image">
+</div>
+
 
 <% if flash[:notice] %>
   <div class="col-10 offset-1 mt-5">
@@ -70,7 +74,7 @@
           </tbody>
         </table>
         <div class="row justify-content-center">
-          <%= link_to "ログイン", new_customer_registration_path,class: "btn btn-primary badge-pill mt-4" %>
+          <%= link_to "ログイン", new_customer_session_path,class: "btn btn-primary badge-pill mt-4" %>
         </div>
       </div>
     </div>
@@ -144,7 +148,7 @@
     </div>
 </div>
 
-<div class="col-6 offset-3 mt-4">
+<div class="col-6 offset-3 mt-4 mb-5">
   <div class="h2 font-weight-bold">ご不明な点は</div>
   <div class="h2 font-weight-bold mb-3">お気軽にお問い合わせください</div>
   <div>メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。メッセージを入力できます。</div>
