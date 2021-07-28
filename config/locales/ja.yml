@@ -20,7 +20,7 @@ ja:
   devise:
     failure:
       already_authenticated: 'すでにログインしています。'
-      inactive: 'アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。'
+      inactive: 'アカウントが有効化されていません。運営にお問い合わせください。'
       invalid: "%{authentication_keys} もしくはパスワードが不正です。"
       locked: 'あなたのアカウントは凍結されています。'
       last_attempt: 'あなたのアカウントが凍結される前に、複数回の操作がおこなわれています。'
