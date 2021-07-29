@@ -7,7 +7,7 @@
 
   <table class="table col-10 offset-1 my-auto py-5">
     <tbody>
-      <% @information.reverse_each do |information| %>
+      <% @information.each do |information| %>
         <tr class="col-10 offset-1 border-bottom border-2 py-5">
           <td>
             <%= link_to admin_information_path(information),class: "row text-decoration-none" do %>
