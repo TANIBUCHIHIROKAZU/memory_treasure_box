@@ -13,8 +13,7 @@ class Public::CommentsController < ApplicationController
   # コメント
   def destroy
     @memory = Memory.find(params[:memory_id])
-    comment = current_customer.comments.find_by(params[:id])
-    comment.memory_id = @memory.id
+    comment = current_customer.comments.find(params[:id])
     comment.destroy
     @comment = Comment.new
   end
