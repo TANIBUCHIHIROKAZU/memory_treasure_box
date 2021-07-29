@@ -9,7 +9,7 @@
   </div>
   <ul class="m-4" style="display: flex;justify-content: flex-start;gap: 20px; flex-wrap: wrap">
     <% @customer.each do |customer| %>
-      <li class="py-4 bg-light" style="display: flex; width: 230px;">
+      <li class="py-4 bg-light px-3" style="display: flex; width: 230px;">
         <div class="ml-3">
           <%= attachment_image_tag customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
         </div>
