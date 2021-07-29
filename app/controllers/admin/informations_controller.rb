@@ -6,7 +6,7 @@ class Admin::InformationsController < ApplicationController
   end
 
   def index
-    @information = Information.page(params[:page]).per(10)
+    @information = Information.page(params[:page]).per(10).reverse_order
   end
 
   def show
