@@ -51,7 +51,9 @@ class Public::MemoriesController < ApplicationController
     @memory = Memory.find(params[:id])
     tag_list = params[:memory][:tag_name]&.split(nil)
     if @memory.update(memory_params)
-      @memory.save_memory_tag(tag_list, current_customer)
+      if current_customer.plan == "plan_2"
+        @memory.save_memory_tag(tag_list, current_customer)
+      end
       redirect_to memory_path(@memory)
     else
       render 'edit'
