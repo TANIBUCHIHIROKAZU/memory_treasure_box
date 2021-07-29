@@ -31,13 +31,15 @@
 ## 設計書
 
 ### ワイヤーフレーム
+adobe XDを使用
+https://xd.adobe.com/view/4aca1533-699d-42f3-84da-e297ab291ac4-1f99/
 
-### テーブル定義書
+### テーブル定義書/詳細設計
 https://docs.google.com/spreadsheets/d/1WG5PV_MGBY1tE8qOQZxElu751aSE8LQJzszCKb9R_SA/edit?usp=sharing
 
 ### ER図
 
-### 詳細設計
+![memory_treasure_box](https://user-images.githubusercontent.com/81840302/127513278-99618a18-5f27-4914-b0e7-eb613675c468.jpg)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1gmNqCRGGMx11-P1OCHG9apKsniiVCjXmr2r6ykreHPs/edit?usp=sharing
@@ -62,11 +64,15 @@ https://docs.google.com/spreadsheets/d/1gmNqCRGGMx11-P1OCHG9apKsniiVCjXmr2r6ykre
 -   ログイン/ログアウト機能
 -   退会機能
 -   管理機能
--   投稿機能
+-   投稿・編集・削除機能
 -   画像投稿機能
 -   購入機能
 -   タグ機能
 -   検索機能
+-   フォロー・フォロワー機能
+-   権限機能
+-   お問い合わせ機能
+-   メール機能
 
 ## 作者
 
