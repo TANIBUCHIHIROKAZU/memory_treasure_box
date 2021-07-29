@@ -9,7 +9,7 @@
       <div class="border-bottom border-2 col-10 offset-1">
         <div class="d-flex">
           <li class="nav-item col-md-3">
-            <div class="h5 font-weight-bold">名前 <%= @memory.customer.name %></div>
+            <div class="h5 font-weight-bold">名前 <%= truncate(@memory.customer.name, length: 6, omission: "") %></div>
           </li>
           <li class="nav-item col-md-3 font-weight-bold mr-auto">
             タグ：
