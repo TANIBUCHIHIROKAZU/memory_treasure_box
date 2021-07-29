@@ -21,6 +21,6 @@
     
     <div class= "row mt-5 offset-1">
       <dt class= "col-md-4">本文</dt>
-      <dd class= "col-md-7"><%= @contact.message %></dd>
+      <dd class= "col-md-7"><%= safe_join(@contact.message.split("\n"),tag(:br)) %></dd>
     </div>
   </dl>

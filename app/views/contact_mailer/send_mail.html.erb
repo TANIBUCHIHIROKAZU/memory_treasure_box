@@ -1,7 +1,7 @@
-<%= @contact.name %> 様 から問い合わせがありました。
+<div><%= @contact.name %> 様 から問い合わせがありました。</div>
 
-【メールアドレス】:<%= @contact.email %></br>
+<div>【メールアドレス】:<%= @contact.email %></div></br>
 
-【件名】:<%= @contact.subject %></br>
-【お問い合わせ内容】</br>
-<%= @contact.message %>
+<div>【件名】:<%= @contact.subject %></div></br>
+<div>【お問い合わせ内容】</div></br>
+<div><%= safe_join(@contact.message.split("\n"),tag(:br)) %></div>
