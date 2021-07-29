@@ -7,7 +7,7 @@
       <h1 class="h2 font-weight-bold col-md-8"><%= @memory.memory_title %></h1>
     </div>
   </div>
-  
+
     <ul class="row list-unstyled">
       <div class="border-bottom border-2 col-10 offset-1">
         <div class="d-flex">
@@ -43,23 +43,23 @@
         </div>
       </div>
     </ul>
-  
+
   <div class="row my-5">
     <p class="col-10 offset-1">
       <%=safe_join(@memory.memory_detail.split("\n"),tag(:br))%>
     </p>
   </div>
-  
+
     <div class="col-10 offset-1">
       <div class="row my-5 mx-auto justify-content-between" style="gap: 20px;">
           <% if @memory.memory_images.present? %>
             <% @memory.memory_images.each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 200, 200, size:'200x200',class: "img-thumbnail" %>
+              <%= attachment_image_tag image, :image ,class: "img-thumbnail size" %>
             <% end %>
           <% end %>
        </div>
     </div>
-    
+
   <div id="comment">
    <%= render "public/comments/comment", memory: @memory,comment: @comment %>
   </div>
