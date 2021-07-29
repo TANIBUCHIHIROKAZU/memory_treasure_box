@@ -14,7 +14,7 @@
           <%= attachment_image_tag customer, :icon, :fill, 100, 100, fallback: "no_image.jpg", size:'60x60', style:"margin-right:16px;" %>
         </div>
         <div class="text-center mx-auto">
-          <%= link_to customer.name, memory_index_customer_path(customer), class: "text-dark" %><br>
+          <%= link_to truncate(customer.name, length: 6, omission: ""), memory_index_customer_path(customer), class: "text-dark" %><br>
               <% unless customer == current_customer %>
                 <% if current_customer.following?(customer) %>
                   <%= link_to 'フォロー', unfollow_path(customer.id), method: :POST,class: "btn btn-primary badge-pill mt-1" %>
