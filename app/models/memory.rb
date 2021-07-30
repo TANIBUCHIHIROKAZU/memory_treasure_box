@@ -13,13 +13,15 @@ class Memory < ApplicationRecord
   validates :status, presence: true
   validate :validate_memory_images, if: :free_plan?
 
+  # ライトプランか検証
   def free_plan?
     Customer.find(customer_id).plan == "free_plan"
   end
 
+  # 画像投稿できないプランの人が、無理やり画像投稿した場合
   def validate_memory_images
     if memory_images.size > 0
-      errors.add(:base, 'あなたのプランではタグ機能は使用できません')
+      errors.add(:base, 'あなたのプランではこの機能は使用できません')
     end
   end
 
@@ -29,6 +31,7 @@ class Memory < ApplicationRecord
     favorites.where(customer_id: customer.id).exists?
   end
 
+  # タグをsaveまたはupdateする処理
   def save_memory_tag(sent_memory_tags, customer)
     current_memory_tags = memory_tags.pluck(:tag_name) unless memory_tags.nil?
     old_memory_tags = current_memory_tags - sent_memory_tags

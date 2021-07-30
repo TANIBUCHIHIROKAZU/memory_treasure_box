@@ -1,11 +1,10 @@
 class Public::ContactsController < ApplicationController
-  # 問い合わせフォーム
   def new
     @contact = Contact.new
   end
 
   # 確認画面
-  # 送信完了後画面を表示させない処理
+  # 送信完了後、confirmに戻るとnewに戻る
   # validateエラーの場合newに戻る
   def confirm
     if params[:contact].blank?
