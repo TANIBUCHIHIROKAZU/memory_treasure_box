@@ -1,7 +1,6 @@
 #  結びの霊園
 
-![Hero](https://user-images.githubusercontent.com/81840302/127581044-621c76f8-7d5e-4405-970f-8de464197939.jpg)
-
+![kari](https://user-images.githubusercontent.com/81840302/127589811-21a32b67-d6e8-45f6-922d-372fc70c08b9.jpg)
 
 ## サイトの概要
 オンラインで思い出を保存できる霊園を作るアプリケーション。
