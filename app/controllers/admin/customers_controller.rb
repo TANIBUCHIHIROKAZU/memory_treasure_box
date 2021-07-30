@@ -13,11 +13,12 @@ class Admin::CustomersController < ApplicationController
     @customers = Customer.search(params[:search]).page(params[:page]).per(9)
   end
 
+  # 会員のmemory一覧
   def memory_index
     @customer = Customer.find(params[:id])
     @memory = @customer.memories
-    @memory_public = @memory.where(status: :public).page(params[:page]).per(9)
-    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9)
+    @memory_public = @memory.where(status: :public).page(params[:page]).per(9) # 全て公開
+    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9) # 限定公開
   end
 
   def update

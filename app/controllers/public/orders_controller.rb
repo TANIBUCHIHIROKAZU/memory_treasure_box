@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
   end
 
   # 最終確認画面
-  # 購入完了後、確認画面に戻る場合トップに戻る
+  # 購入完了後、confirmationに戻るとトップに戻る
   def confirmation
     if params[:order].blank?
       redirect_to root_path

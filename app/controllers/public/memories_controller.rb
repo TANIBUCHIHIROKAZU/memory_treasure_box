@@ -9,7 +9,7 @@ class Public::MemoriesController < ApplicationController
     @memory = Memory.find(params[:id])
     @memory_tags = @memory.memory_tags
     @comment = Comment.new
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound => e # データーを削除し、戻ってもエラーが出ない処理
     redirect_to memory_index_customer_path(current_customer)
     nil
   end
@@ -18,8 +18,8 @@ class Public::MemoriesController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @tag = @customer.memory_tags.find(params[:memory_tag_id])
     @memory = @tag.memories.all
-    @memory_public = @memory.where(status: :public).page(params[:page]).per(9)
-    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9)
+    @memory_public = @memory.where(status: :public).page(params[:page]).per(9) # 全て公開
+    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9) # 限定公開
   end
 
   def edit

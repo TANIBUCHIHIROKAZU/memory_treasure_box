@@ -1,7 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!
 
-  # コメント作成
   def create
     @memory = Memory.find(params[:memory_id])
     comment = current_customer.comments.new(comment_params)
@@ -10,7 +9,6 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  # コメント
   def destroy
     @memory = Memory.find(params[:memory_id])
     comment = current_customer.comments.find(params[:id])
