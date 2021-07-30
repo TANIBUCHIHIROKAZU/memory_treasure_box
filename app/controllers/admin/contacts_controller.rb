@@ -7,7 +7,7 @@ class Admin::ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound => e # データーを削除し、戻ってもエラーが出ない処理
     redirect_to admin_contacts_path
   end
 

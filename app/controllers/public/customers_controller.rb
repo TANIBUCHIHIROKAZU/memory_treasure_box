@@ -1,28 +1,26 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
-  # 会員の一覧を表示する
   def index
     @customer = Customer.page(params[:page]).per(9)
   end
 
-  # 会員のmemory一覧（status別に表示）
+  # 会員のmemory一覧
   def memory_index
     @customer = Customer.find(params[:id])
     @memory = @customer.memories
-    @memory_public = @memory.where(status: :public).page(params[:page]).per(9)
-    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9)
+    @memory_public = @memory.where(status: :public).page(params[:page]).per(9) # 全て公開
+    @memory_follower_only = @memory.where(status: :follower_only).page(params[:page]).per(9) # 限定公開
   end
 
-  # ログイン会員のマイページ
   def show
     @customer = Customer.find(params[:id])
     if @customer != current_customer
       redirect_to root_path
     end
-    @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(9)
-    @follow = current_customer.follow_only.page(params[:page]).per(9)
-    @follower = current_customer.follower.page(params[:page]).per(9)
+    @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(9) # 相互フォロー一覧
+    @follow = current_customer.follow_only.page(params[:page]).per(9) # フォロー一覧
+    @follower = current_customer.follower.page(params[:page]).per(9) # フォロワー一覧
   end
 
   def search
@@ -35,9 +33,9 @@ class Public::CustomersController < ApplicationController
       flash[:success] = "保存されました"
       redirect_to customer_path(current_customer)
     else
-      @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(6)
-      @follow = current_customer.follow_only.page(params[:page]).per(6)
-      @follower = current_customer.follower.page(params[:page]).per(6)
+      @mutual_follow = Kaminari.paginate_array(current_customer.mutual_follow).page(params[:page]).per(6) # 相互フォロー一覧
+      @follow = current_customer.follow_only.page(params[:page]).per(6) # フォロー一覧
+      @follower = current_customer.follower.page(params[:page]).per(6) # フォロワー一覧
       render :show
     end
   end

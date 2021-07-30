@@ -11,7 +11,7 @@ class Admin::InformationsController < ApplicationController
 
   def show
     @information = Information.find(params[:id])
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound => e # データーを削除し、戻ってもエラーが出ない処理
     redirect_to admin_informations_path
   end
 
