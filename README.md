@@ -45,6 +45,11 @@ https://docs.google.com/spreadsheets/d/1WG5PV_MGBY1tE8qOQZxElu751aSE8LQJzszCKb9R
   
 ![memory_treasure_box](https://user-images.githubusercontent.com/81840302/127513278-99618a18-5f27-4914-b0e7-eb613675c468.jpg)  
   
+### AWS設計図
+  
+  ![AWS_アートボード 1](https://user-images.githubusercontent.com/81840302/128606947-62df546d-f6f2-4c7b-bf44-2ffdd41d1f67.jpg)
+  
+
 ## チャレンジ要素一覧
   
 https://docs.google.com/spreadsheets/d/1gmNqCRGGMx11-P1OCHG9apKsniiVCjXmr2r6ykreHPs/edit?usp=sharing  
