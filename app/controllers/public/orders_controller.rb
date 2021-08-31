@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except:[:plan_order]
 
   # 申し込み画面に遷移
   def plan_order
